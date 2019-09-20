@@ -239,7 +239,7 @@ router.get('/:idCategory/subjects',(req,res) => getCategorySubjects(req,res));
 
 router.put('/:idCategory',(req,res) => putCategory(req,res));
 router.put('/:idCategory/subjects/:idSubject',(req,res) => putSubject(req,res));
-router.put('/subjects/:idSubject/tutor/:user',(req,res) => putTutorInSubject(req, res));
+router.put('/subjects/:idSubject/tutors/:user',(req,res) => putTutorInSubject(req, res));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

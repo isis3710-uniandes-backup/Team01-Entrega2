@@ -245,7 +245,7 @@ router.get('/:user',(req,res) => getUsersByUsuario(req,res));
 
 router.put('/tutors/:user',(req,res) => putTutor(req, res));
 router.put('/students/:user',(req,res) => putStudent(req, res));
-router.put('/students/:user/monitoria/:idMonitoria',(req,res) => putStudentInMonitoria(req, res));
+router.put('/students/:user/monitorias/:idMonitoria',(req,res) => putStudentInMonitoria(req, res));
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
