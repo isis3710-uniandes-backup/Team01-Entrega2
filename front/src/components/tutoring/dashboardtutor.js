@@ -1,26 +1,41 @@
 import React, { Component } from 'react'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {Col,Row, Card} from 'react-bootstrap';
+import '../../styles/dashboardtutor.css';
 
 export default class dashboardtutor extends Component {
     render() {
         return (
-            <div>
-                <Row>
-                    <Col md={6}>
-                        <Row style={{backgroundColor : 'white' }}>
+            <div id="dashboard">
+                <Row className="principal">
+                    <Col md={5}>
+                        <Row className="secundaria">
                             <Col>
-                            <h1>Crear nueva tutoria</h1>
+                                <Card >
+                                    <Card.Body className="text-right">
+                                    <img className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg"/>
+                                        <strong id="nueva">Nueva</strong>
+                                        <br></br>
+                                        <strong id="tutoria">Tutoría</strong>
+                                    </Card.Body>
+                                </Card>
                             </Col>
                         </Row>
-                        <Row style={{backgroundColor : 'yellow' }}>
+                        <Row className="stats" >
                             <Col>
-                            <h1>Stats</h1>
+                            <Card>
+                                    <Card.Body>
+
+                                    </Card.Body>
+                                </Card>
                             </Col>
                         </Row>
                     </Col>
-                    <Col md={6} style={{backgroundColor : 'red' }}>
-                    <h1>Listado de tutorias</h1>
+                    <Col md={7} >
+                    <Card>
+                                    <Card.Body>
+
+                                    </Card.Body>
+                                </Card>
                     </Col>
                 </Row>
             </div>
