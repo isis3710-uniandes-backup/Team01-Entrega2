@@ -49,7 +49,7 @@ class Register extends Component {
         }
 
     }
-    /*
+    
     singUp() {
         if (this.state.password === this.state.rePassword) {
             var usr;
@@ -58,7 +58,7 @@ class Register extends Component {
                 .then(data => usr = data.user)
             if (usr !== undefined) {
                 try {
-                    fetch('/users', {
+                    fetch('/students', {
                         method: 'POST', // or 'PUT'
                         body: JSON.stringify({
                             nombre: this.state.nombre,
@@ -83,7 +83,7 @@ class Register extends Component {
             alert("The user already exist");
         }
     }
-    */
+    
     render() {
         return (
 
@@ -97,46 +97,25 @@ class Register extends Component {
                     </div>
                     <div className="modal-body">
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Nombre</span>
-                            </div>
-                            <input id="nombre" type="text" className="form-control" aria-label="nombre" aria-describedby="basic-addon1" value={this.state.nombre} onChange={this.changeValue}></input>
+                            <input id="nombre" type="text" className="form-control" aria-label="nombre" placeholder="nombre" varia-describedby="basic-addon1" value={this.state.nombre} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Email</span>
-                            </div>
-                            <input id="email" type="text" className="form-control" aria-label="email" aria-describedby="basic-addon1" value={this.state.email} onChange={this.changeValue}></input>
+                            <input id="email" type="text" className="form-control" aria-label="email" placeholder="email" aria-describedby="basic-addon1" value={this.state.email} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Documento</span>
-                            </div>
-                            <input id="cedula" type="text" className="form-control" aria-label="cedula" aria-describedby="basic-addon1" value={this.state.cedula} onChange={this.changeValue}></input>
+                            <input id="cedula" type="text" className="form-control" aria-label="cedula" placeholder="cedula" aria-describedby="basic-addon1" value={this.state.cedula} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Telefono</span>
-                            </div>
-                            <input id="telefono" type="number" className="form-control" aria-label="telefono" aria-describedby="basic-addon1" value={this.state.telefono} onChange={this.changeValue}></input>
+                            <input id="telefono" type="number" className="form-control" aria-label="telefono" placeholder="telefono" aria-describedby="basic-addon1" value={this.state.telefono} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Usuario</span>
-                            </div>
-                            <input id="usuario" type="text" className="form-control" aria-label="usuario" aria-describedby="basic-addon1" value={this.state.usuario} onChange={this.changeValue}></input>
+                            <input id="usuario" type="text" className="form-control" aria-label="usuario" placeholder="usuario" aria-describedby="basic-addon1" value={this.state.usuario} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text">Contrasenia</span>
-                            </div>
-                            <input id="contrasenia" type="password" className="form-control" aria-label="password" aria-describedby="basic-addon1" value={this.state.contrasenia} onChange={this.changeValue}></input>
+                            <input id="contrasenia" type="password" className="form-control" placeholder="contraseña" aria-label="password" aria-describedby="basic-addon1" value={this.state.contrasenia} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Re-Type Password</span>
-                            </div>
-                            <input id="rePassword" type="password" className="form-control" aria-label="re-password" aria-describedby="basic-addon1" value={this.state.rePassword} onChange={this.changeValue}></input>
+                            <input id="rePassword" type="password" className="form-control" placeholder="confirmar contraseña" aria-label="re-password" aria-describedby="basic-addon1" value={this.state.rePassword} onChange={this.changeValue}></input>
                         </div>
                     </div>
                     <div className="modal-footer">

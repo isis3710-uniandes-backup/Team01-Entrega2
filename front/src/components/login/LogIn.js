@@ -60,16 +60,10 @@ class LogIn extends Component {
                     </div>
                     <div className="modal-body">
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="basic-addon1">Email</span>
-                            </div>
-                            <input id="email" type="text" className="form-control" aria-label="email" aria-describedby="basic-addon1" value={this.state.email} onChange={this.changeValue}></input>
+                            <input id="email" type="text" placeholder="email" className="form-control" aria-label="email" aria-describedby="basic-addon1" value={this.state.email} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text">Password</span>
-                            </div>
-                            <input id="password" type="password" className="form-control" aria-label="password" aria-describedby="basic-addon1" value={this.state.password} onChange={this.changeValue}></input>
+                            <input id="password" placeholder="contraseña" type="password" className="form-control" aria-label="password" aria-describedby="basic-addon1" value={this.state.password} onChange={this.changeValue}></input>
                         </div>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="defaultUnchecked" onChange={this.changeCK}></input>
