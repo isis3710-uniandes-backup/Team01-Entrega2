@@ -35,10 +35,14 @@
 h1,h2,h3, h4, h5, h6, p, span{
     font-family: 'Ubuntu', sans-serif !important
 }
+.modal-title{
+    font-weight: 700;
+}
+/* material */
 .MuiPickersToolbar-toolbar, .MuiPickersDay-daySelected{
     background-color: #43efc7 !important;
 }
-.MuiButton-textPrimary{
+.MuiButton-textPrimary , .MuiCheckbox-colorSecondary.Mui-checked{
     color:  #43efc7 !important;
 }
 .modalButtons{
@@ -50,4 +54,16 @@ h1,h2,h3, h4, h5, h6, p, span{
     border-color: #43efc7;
     color:white;
     background-color: #25d1a9;
+}
+.MuiFormLabel-root.Mui-focused {
+    color: #25d1a9 !important;
+}
+.MuiInput-underline:after{
+    border-bottom: 2px solid #43efc7 !important;
+}
+.MuiPickersClockPointer-pointer, .MuiPickersClock-pin, .MuiPickersClockPointer-thumb{
+    background-color: #25d1a9 !important;
+}
+.MuiPickersClockPointer-thumb{
+    border: 14px solid #999494 !important;
 }
