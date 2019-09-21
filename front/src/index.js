@@ -1,4 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import TutoFinder from "./components/tutofinder"
-ReactDOM.render(<TutoFinder />, document.getElementById("root"));
+import Home from "./components/home/home"
+import  Navbar  from "./components/navbar";
+ReactDOM.render(<div><Navbar/><Home /></div>, document.getElementById("root"));

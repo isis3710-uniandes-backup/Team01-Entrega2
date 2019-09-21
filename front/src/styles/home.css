@@ -17,3 +17,33 @@
    color:white;
    border-color:white;
  }
+
+ /* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.img-circle {
+  border-radius: 50%;
+}
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.col-md-offset-2 {
+  margin-left: 16.66666667%;
+}
+#home{
+  overflow-x: hidden;
+}

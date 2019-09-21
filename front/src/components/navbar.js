@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import LogIn from "./login/LogIn"
 import Register from "./login/Register"
+import UserLogo from "../imgs/usr.png"
 
 export default class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            carreras: [],
+            categorias: [],
             busqueda: "",
             usuario: {},
+            logueado:false,
             logFunc: this.props.logFunc
         }
         this.changeValue = this.changeValue.bind(this);
@@ -17,7 +19,8 @@ export default class Navbar extends Component {
     }
     loguear(usr) {
         this.setState({
-            usuario: usr
+            usuario: usr,
+            logueado:true
         });
         this.state.logFunc();
     }
@@ -26,7 +29,7 @@ export default class Navbar extends Component {
             .then(res => res.json())
             .then(json => {
                 this.setState({
-                    carreras: json
+                    categorias: json
                 })
             });
     }
@@ -52,10 +55,10 @@ export default class Navbar extends Component {
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Carreras
+                                    Categorias
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    {this.state.carreras.map((e, i) => <a className="dropdown-item" href="#" key={i}>{e.nombre}</a>)}
+                                    {this.state.categorias.map((e, i) => <a className="dropdown-item" href="#" key={i}>{e.nombre}</a>)}
                                 </div>
                             </li>
                         </ul>
@@ -64,7 +67,18 @@ export default class Navbar extends Component {
                             <input id="search" className="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" value={this.state.busqueda} onChange={this.changeValue}></input>
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                         </form>
-                        <ul className="navbar-nav ">
+                        { this.state.logueado ? <ul className="nav navbar-nav ml-auto">
+                            <li className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <img className="img-circle" src={UserLogo} alt="Generic placeholder image" width="25" height="25"></img>
+                                {this.state.usuario.nombre}</a>
+                                <div className="dropdown-menu dropdown-menu-right">
+                                    <a href="#" className="dropdown-item">Mis Tutorias</a>
+                                    <div className="dropdown-divider"></div>
+                                    <a href="#" className="dropdown-item">Cerrar Sesión</a>
+                                </div>
+                            </li>
+                        </ul>: <ul className="navbar-nav">
                             <li className="nav-item">
                                 <a type="button" className="nav-link" data-toggle="modal" data-target="#exampleModal">
                                     Log In </a>
@@ -79,8 +93,9 @@ export default class Navbar extends Component {
                             <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <Register changeLogInStatus={this.logueado} />
                             </div>
-                        </ul>
-
+                        </ul> }
+                        
+                        
 
                     </div>
 
