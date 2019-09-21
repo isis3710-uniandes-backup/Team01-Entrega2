@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
-import { Col, Row, Card, Modal, Button } from 'react-bootstrap';
+import { Col, Row, Card, Modal, Button, FormGroup } from 'react-bootstrap';
 import '../../styles/dashboardtutor.css';
 import {
     MuiPickersUtilsProvider,
     KeyboardDateTimePicker,
 } from '@material-ui/pickers';
+import TextField from '@material-ui/core/TextField';
+
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+
+
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 
@@ -12,8 +18,23 @@ export default class dashboardtutor extends Component {
 
     state = {
         modalShow: false,
-        selectedDate: new Date()
+        selectedDate: new Date(),
+        selectedAddress: "Kra 8a #153-51",
+        category: "",
+        course: "",
+        costo: "$",
+        cupos: "0",
+        grupal: false
     }
+    underline = {
+        '&:after': {
+            borderBottom: '2px solid #25d1a9'
+        }
+    }
+    suggestions = [{
+        label: 'Matematicas'
+    }
+    ];
 
     setModalShow = state => {
         this.setState({
@@ -25,9 +46,55 @@ export default class dashboardtutor extends Component {
             selectedDate: date
         })
     };
+    setSelectedAddress = evento => {
+        this.setState({
+            selectedAddress: evento.target.value
+        })
+    }
+    setCategory = evento => {
+        this.setState({
+            category: evento.target.value
+        })
+    }
+    setCourseNewTutoria = evento => {
+        this.setState({
+            course: evento.target.value
+        })
+    }
+    setCost = evento => {
+        this.setState({
+            costo: evento.target.value
+        })
+    }
+    setCupos = evento => {
+        this.setState({
+            cupos: evento.target.value
+        })
+    }
+    setGrupal = () => {
+        this.setState({
+            grupal: !this.state.grupal
+        })
+    }
+
     MyVerticallyCenteredModal = (props) => {
         const selectedDate = this.state.selectedDate;
         const setSelectedDate = this.setSelectedDate;
+
+        const selectedAddress = this.state.selectedAddress;
+        const setSelectedAddress = this.setSelectedAddress;
+
+        const course = this.state.course;
+        const setCourseNewTutoria = this.setCourseNewTutoria;
+
+        const costo = this.state.costo;
+        const setCosto = this.setCost;
+
+        const cupos = this.state.cupos;
+        const setCupos = this.setCupos;
+
+        const grupal = this.state.grupal;
+        const setGrupal = this.setGrupal;
 
         return (
             <Modal
@@ -36,30 +103,80 @@ export default class dashboardtutor extends Component {
                 centered
             >
                 <Modal.Body>
-                    <Modal.Title id="contained-modal-title-vcenter">
+                    <Modal.Title className="text-center" id="contained-modal-title-vcenter">
                         Crear una nueva tutoría.
               </Modal.Title>
                     <Row>
-                        <Col md={6}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <Grid container justify="space-around">
-                     
-                                <KeyboardDateTimePicker
-                                    margin="normal"
-                                    id="date-picker-dialog"
-                                    label="Fecha"
-                                    disablePast="true"
-                                    format="MM/dd/yyyy HH:mm"
-                                    value={selectedDate}
-                                    onChange={setSelectedDate}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date',
-                                    }}
-                                />
-                            </Grid>
-                        </MuiPickersUtilsProvider>
+                        <Col md={6} xs={6}>
+                            <TextField
+                                required
+                                id="standard-required"
+                                label="Materia"
+                                defaultValue={course}
+                                onChange={setCourseNewTutoria}
+                                className="materia"
+                                margin="normal"
+                            />
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <Grid container justify="space-around">
+
+                                    <KeyboardDateTimePicker
+                                        margin="normal"
+                                        id="date-picker-dialog"
+                                        label="Fecha"
+                                        disablePast="true"
+                                        format="MM/dd/yyyy HH:mm"
+                                        value={selectedDate}
+                                        onChange={setSelectedDate}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                        }}
+                                    />
+
+                                </Grid>
+                            </MuiPickersUtilsProvider>
+                            <FormGroup>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={grupal}
+                                        onChange={setGrupal}
+                                        value="grupal"
+                                    />
+                                }
+                                label="Grupal"
+                                margin="normal"
+
+                            />
+                            </FormGroup>
+                            
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} xs={6}>
+                            <TextField
+                                required
+                                id="standard-required"
+                                label="Dirección"
+                                defaultValue={selectedAddress}
+                                onChange={setSelectedAddress}
+                                className="address"
+                                margin="normal"
+                            />
+                            <TextField
+                                id="adornment-amount"
+                                value={costo}
+                                onChange={setCosto}
+                                label="Costo"
+                                margin="normal"
+                            />
+                            {this.state.grupal ? <TextField
+                                id="cupos"
+                                value={cupos}
+                                onChange={setCupos}
+                                label="Cupos"
+                                margin="normal"
+                                type="number"
+                            /> : false}
+
                         </Col>
                     </Row>
                 </Modal.Body>
