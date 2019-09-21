@@ -65,9 +65,9 @@ class LogIn extends Component {
                         <div className="input-group mb-3">
                             <input id="password" placeholder="contraseña" type="password" className="form-control" aria-label="password" aria-describedby="basic-addon1" value={this.state.password} onChange={this.changeValue}></input>
                         </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked" onChange={this.changeCK}></input>
-                            <label class="custom-control-label" for="defaultUnchecked">Remember Me</label>
+                        <div className="custom-control custom-checkbox">
+                            <input type="checkbox" className="custom-control-input" id="defaultUnchecked" onChange={this.changeCK}></input>
+                            <label className="custom-control-label" htmlFor="defaultUnchecked">Remember Me</label>
                         </div>
                     </div>
                     <div className="modal-footer">

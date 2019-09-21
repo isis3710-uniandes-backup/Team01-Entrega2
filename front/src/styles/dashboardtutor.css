@@ -1,5 +1,5 @@
 #dashboard{
-    background-color: #f3e1e1;
+    background-color: #e2e2e4;
     padding-top : 30px;
     padding-left : 25px;
     padding-right: 25px;
@@ -31,4 +31,23 @@
 #plus{
     max-width: 100px;
     margin-top : -50px;
+}
+h1,h2,h3, h4, h5, h6, p, span{
+    font-family: 'Ubuntu', sans-serif !important
+}
+.MuiPickersToolbar-toolbar, .MuiPickersDay-daySelected{
+    background-color: #43efc7 !important;
+}
+.MuiButton-textPrimary{
+    color:  #43efc7 !important;
+}
+.modalButtons{
+    border-color:rgb(70, 75, 73);
+    color:rgb(70, 75, 73);
+}
+
+.modalButtons:hover{
+    border-color: #43efc7;
+    color:white;
+    background-color: #25d1a9;
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from "react-router-dom";
-import {Container} from 'react-bootstrap'
-
+import DashBoardTutor from './tutoring/dashboardtutor';
 import Navbar from './navbar'
 import Home from './home/home'
 
@@ -22,15 +21,15 @@ export default class tutofinder extends Component {
     render() {
         return (
             <div>
-                <Container>
                 <BrowserRouter>
                         <div>
                             <Navbar logFunc={this.loguear}/>
                             <Route exact path="/" component={Home} />
+                            <Route path="/tutor" component={DashBoardTutor} />
+
                             <p>Hola amigos</p>
                         </div>
                     </BrowserRouter>
-                </Container>
             </div>
         )
     }
