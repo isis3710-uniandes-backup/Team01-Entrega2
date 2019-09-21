@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import LogIn from "./login/LogIn"
 import Register from "./login/Register"
-import '../styles/navbar.css'
 
 export default class Navbar extends Component {
     constructor(props) {

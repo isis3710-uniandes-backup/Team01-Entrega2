@@ -1,0 +1,19 @@
+
+  .flex-md-equal > * {
+    -ms-flex: 1;
+    -webkit-box-flex: 1;
+    flex: 1;
+  
+}
+#banner {
+  background-image: url("https://www.laregioninternacional.com/asset/zoomcrop,1140,580,center,center/media/lri/images/2018/02/22/2018022209483277296.jpg");
+  background-size: cover;
+  background-color: #cccccc;
+ }
+ .titulo{
+  color:white;
+ }
+ #sobreNosotros{
+   color:white;
+   border-color:white;
+ }
