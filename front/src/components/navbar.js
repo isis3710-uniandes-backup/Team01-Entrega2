@@ -19,6 +19,7 @@ export default class Navbar extends Component {
 
     }
     loguear(usr) {
+        console.log(usr);
         this.setState({
             usuario: usr,
             logueado:true
@@ -70,7 +71,7 @@ export default class Navbar extends Component {
                             <li className="nav-item dropdown">
                                 <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <img className="img-circle" src={UserLogo} alt="Generic placeholder image" width="25" height="25"></img>
-                                {this.state.usuario.nombre}</a>
+                                @{this.state.usuario}</a>
                                 <div className="dropdown-menu dropdown-menu-right">
                                     <a href="#" className="dropdown-item">Mis Tutorias</a>
                                     <div className="dropdown-divider"></div>
