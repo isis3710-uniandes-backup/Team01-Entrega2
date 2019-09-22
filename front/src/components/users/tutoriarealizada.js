@@ -47,11 +47,8 @@ export default class tutoriarealizada extends Component {
                         <div className="sameLine">
                         <h5 className="hora">{this.state.fecha.split("T")[1].split(".")[0]} a {this.state.horaFinal}</h5>
                         <h5 className="costo" >${this.state.costo}</h5>
-                        <h5 className="cupos" >Cupos actuales : {this.state.cupos}</h5>
                         </div>
-                        <div className="stars">
-                            <Rating value={3} readOnly />
-                        </div>
+                        
                     </Card.Body>
                 </Card>
                 </div>
