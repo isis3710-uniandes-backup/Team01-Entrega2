@@ -22,7 +22,6 @@ export default class Navbar extends Component {
 
     }
     loguear(usr) {
-        console.log(usr);
         this.setState({
             usuario: usr,
             logueado: true
@@ -30,13 +29,14 @@ export default class Navbar extends Component {
         this.state.logFunc();
     }
     componentDidMount() {
-        fetch('/categories')
+       /* fetch('/categories')
             .then(res => res.json())
             .then(json => {
                 this.setState({
                     categorias: json
                 })
             });
+            */
     }
     changeValue(e) {
         this.setState({
@@ -91,14 +91,14 @@ export default class Navbar extends Component {
                         </ul> : <ul className="navbar-nav">
                                 <li className="nav-item">
                                     <button type="button" className="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">
-                                        Log In </button>
+                                        Inicia sesión </button>
                                     <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <LogIn changeLogInStatus={this.loguear} />
                                     </div>
                                 </li>
                                 <li className="nav-item">
                                     <button type="button" className="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal2">
-                                        Register </button>
+                                        Regístrate </button>
                                 </li>
                                 <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <Register changeLogInStatus={this.loguear} />

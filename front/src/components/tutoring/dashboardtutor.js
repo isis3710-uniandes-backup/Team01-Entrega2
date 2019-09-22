@@ -244,10 +244,6 @@ export default class dashboardtutor extends Component {
                     })
                     
                 }
-                this.setState({
-                    monitoriasBrindadas: tempMonitorias
-                })
-
             }
             );
             this.cargarGraficos();

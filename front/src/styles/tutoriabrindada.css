@@ -44,6 +44,9 @@
     margin-bottom: 0.9rem;
     
 }
+div{
+    font-family: 'Ubuntu', sans-serif;
+  }
 @media only screen and (max-width: 500px) {
     .tutorias {
       width: 1rem !important;

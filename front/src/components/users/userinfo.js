@@ -26,7 +26,6 @@ export default class userinfo extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state.usuario);
         fetch('https://radiant-hollows-88985.herokuapp.com/users/'+this.state.usuario)
             .then(res => res.json())
             .then(json => {
@@ -65,7 +64,7 @@ export default class userinfo extends Component {
     }
 
     putRequest=()=>{
-        let ruta = "https://radiant-hollows-88985.herokuapp.com/users/students/Diany";
+        let ruta = "https://radiant-hollows-88985.herokuapp.com/users/students/"+this.state.usuario;
         let metodo = 'PUT';
         console.log(this.state.nombre);
         let json = {
@@ -137,7 +136,8 @@ export default class userinfo extends Component {
                                         <Image id="userImg" src={this.state.img} roundedCircle></Image>
                                         <br></br>
                                         <br></br>
-                                        <h2 id="name" >{this.state.usuario}</h2>
+                                        <h2 id="name" >{this.state.nombre} {this.state.apellido}</h2>
+                                        <h6>@{this.state.usuario}</h6>
                                     </div>
                                     
                                     <ul className="list-unstyled components">
@@ -208,7 +208,7 @@ export default class userinfo extends Component {
                                         <Image id="userImg" src={this.state.img} roundedCircle></Image>
                                         <br></br>
                                         <br></br>
-                                        <h2 id="name" >{this.state.usuario}</h2>
+                                        <h2 id="name" >{this.state.nombre} {this.state.apellidos}</h2>
                                     </div>
                                     
                                     <ul className="list-unstyled components">
@@ -226,8 +226,8 @@ export default class userinfo extends Component {
                             </Col>
                             
                             <Col lg={8} md={5} sm={5} id="informacion">
-                            <div id="form">  
-                                <h1>Tutorías realizadas</h1>
+                            <div id="form" className="text-center">  
+                                <h1>Mis tutorias.</h1>
                                 {this.state.monitoriasRealizadas.map((e,i) => <TutoriaRealizada key={i} value={e}/>)}
                             </div>  
                             </Col>
