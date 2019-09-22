@@ -37,7 +37,7 @@ export default class tutoriarealizada extends Component {
 
         return (           
                 <div>
-                    <Card className="tutorias" >
+                    <Card id="tutorias" >
                     <Card.Body className="tutoriasBody">
                         <Card.Title>
                             <strong>Monitoria de {this.state.materia}</strong>
