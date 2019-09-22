@@ -13,3 +13,9 @@ nav{
 #buscarButton{
     margin : 0.8rem;
 }
+.btnImagen{
+    border: none;
+}
+.btnImagen:focus {
+box-shadow: none;
+}
