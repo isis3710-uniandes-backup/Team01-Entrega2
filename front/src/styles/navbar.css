@@ -19,3 +19,6 @@ nav{
 .btnImagen:focus {
 box-shadow: none;
 }
+div{
+    font-family: 'Ubuntu', sans-serif;
+  }
