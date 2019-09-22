@@ -6,6 +6,7 @@ class Register extends Component {
         super(props);
         this.state = {
             nombre: "",
+            apellidos: "",
             usuario: "",
             contrasenia: "",
             telefono: "",
@@ -15,7 +16,7 @@ class Register extends Component {
             changeLogInStatus: this.props.changeLogInStatus
         }
         this.changeValue = this.changeValue.bind(this);
-//        this.singUp = this.singUp.bind(this);
+        this.signUp = this.signUp.bind(this);
     }
     changeValue(e) {
         if (e.target.id === "email") {
@@ -30,11 +31,11 @@ class Register extends Component {
             this.setState({
                 contrasenia: e.target.value
             });
-        }else if (e.target.id === "usuario") {
+        } else if (e.target.id === "usuario") {
             this.setState({
                 usuario: e.target.value
             });
-        }else if (e.target.id === "telefono") {
+        } else if (e.target.id === "telefono") {
             this.setState({
                 telefono: e.target.value
             });
@@ -42,48 +43,64 @@ class Register extends Component {
             this.setState({
                 cedula: e.target.value
             });
-        }else {
+        } else if (e.target.id === "apellido") {
+            this.setState({
+                apellidos: e.target.value
+            });
+        } else {
             this.setState({
                 rePassword: e.target.value
             });
         }
 
     }
-    
-    singUp() {
-        if (this.state.password === this.state.rePassword) {
+
+    signUp() {
+        if (this.state.contrasenia === this.state.rePassword) {
             var usr;
-            fetch('/users' + this.state.usuario)
+            fetch('/users/' + this.state.usuario)
                 .then(res => res.json())
-                .then(data => usr = data.user)
-            if (usr !== undefined) {
+                .then(data => usr = data[0]);
+            console.log(usr);
+            if (usr === undefined) {
                 try {
-                    fetch('/students', {
+                    fetch('/users/students', {
                         method: 'POST', // or 'PUT'
                         body: JSON.stringify({
                             nombre: this.state.nombre,
+                            apellidos: this.state.apellidos,
                             usuario: this.state.usuario,
-                            contrasenia: this.state.contrasenia,
+                            contrasenna: this.state.contrasenia,
                             telefono: this.state.telefono,
                             email: this.state.email,
-                            cedula: this.state.cedula
+                            cedula: this.state.cedula,
+                            monitoriasRealizadas: []
                         }), // data can be `string` or {object}!
                         headers: {
                             'Content-Type': 'application/json'
                         }
-                    }).then(res => res.json())
-                        .catch(error => console.error('Error:', error))
-                        .then(this.state.changeLogInStatus);
+                    })
+                        .then(res => res.json())
+                        .then(json => {
+                            this.state.changeLogInStatus(this.state.nombre);
+                            alert("Welcome");
+
+                        })
+                        .catch(error => console.error('Error:', error));
                 } catch (e) {
-                    console.log(e)
-                        ;
+                    console.log(e);
+
                 }
             }
-        } else {
-            alert("The user already exist");
+            else {
+                alert("Ya existe el usuario");
+            }
+        }
+        else {
+            alert("Revisa la contraseña y la confirmación");
         }
     }
-    
+
     render() {
         return (
 
@@ -98,6 +115,9 @@ class Register extends Component {
                     <div className="modal-body">
                         <div className="input-group mb-3">
                             <input id="nombre" type="text" className="form-control" aria-label="nombre" placeholder="nombre" varia-describedby="basic-addon1" value={this.state.nombre} onChange={this.changeValue}></input>
+                        </div>
+                        <div className="input-group mb-3">
+                            <input id="apellido" type="text" className="form-control" aria-label="apellido" placeholder="apellido" varia-describedby="basic-addon1" value={this.state.apellido} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
                             <input id="email" type="text" className="form-control" aria-label="email" placeholder="email" aria-describedby="basic-addon1" value={this.state.email} onChange={this.changeValue}></input>
@@ -120,7 +140,7 @@ class Register extends Component {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" className="btn btn-primary" onClick={this.logIn} data-dismiss="modal">Registrarme</button>
+                        <button type="button" className="btn btn-primary" onClick={this.signUp} data-dismiss="modal">Registrarme</button>
                     </div>
                 </div>
             </div>
