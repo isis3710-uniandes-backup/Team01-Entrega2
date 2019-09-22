@@ -1,0 +1,15 @@
+.navbar-brand{
+    font-weight: bolder;
+}
+#tutofinder{
+    color: #43efc7;
+}
+nav{
+    background-color: #484349;
+}
+.nav-link{
+    color : #fdfffc !important;
+}
+#buscarButton{
+    margin : 0.8rem;
+}
