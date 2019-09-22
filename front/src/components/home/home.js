@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../../styles/home.css'
-import ofMat from '../../imgs/ofMat.png'
+import ofMat from '../../assets/imgs/ofMat.png'
+import logo from "../../assets/imgs/logotype2.png";
 
 export default class Home extends Component {
   render() {
@@ -19,7 +20,7 @@ export default class Home extends Component {
         <div id="nosotros" className="row">
           <div className="col-md-12 text-center">
             <h1>Sobre Nosotros</h1>
-            <img className="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Reloj_flat.svg/200px-Reloj_flat.svg.png" alt="Imagen 1" width="140" height="140"></img>
+            <img className="img-circle" src={logo} alt="Imagen 1" width="140" height="140"></img>
           </div>
           <div className="col-md-8 col-md-offset-2">
             <div className="about-text text-center">

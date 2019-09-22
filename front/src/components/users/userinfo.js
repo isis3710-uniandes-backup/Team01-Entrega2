@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row, Button, Nav, Image,Form} from 'react-bootstrap';
 import '../../styles/userinfo.css';
-import userimage from '../../imgs/usr.png';
+import userimage from '../../assets/imgs/usr.png';
 import TutoriaRealizada from './tutoriarealizada';
 
 
