@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-import { Col, Row, Card, Modal, Button, FormGroup, Toast } from 'react-bootstrap';
+import { Col, Row, Card, Modal, Button, FormGroup } from 'react-bootstrap';
 import '../../styles/dashboardtutor.css';
 import {
     MuiPickersUtilsProvider,
     KeyboardDateTimePicker,
 } from '@material-ui/pickers';
 import TextField from '@material-ui/core/TextField';
-
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
-
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-
-const fetch = require('node-fetch');
+import TutoriaBrindada from './tutoriabrindada';
+import Chart from 'chart.js';
 
 
 export default class dashboardtutor extends Component {
@@ -41,9 +38,9 @@ export default class dashboardtutor extends Component {
     }
     ];
 
-    setModalShow = state => {
+    setModalShow = () => {
         this.setState({
-            modalShow: state
+            modalShow: !this.state.modalShow
         })
     };
     setSelectedDate = date => {
@@ -81,22 +78,25 @@ export default class dashboardtutor extends Component {
             grupal: !this.state.grupal
         })
     }
-    crearTutoria = () => {
-
+    crearTutoria = e => {
+        e.preventDefault();
         let json = {
             "tipo": this.state.grupal ? "Grupal" : "Individual",
             "costo": this.state.costo.replace("$", ""),
             "materias": [this.state.course],
             "direccion": this.state.selectedAddress,
-            "fecha": this.state.selectedDate,
+            "fecha": JSON.stringify(this.state.selectedDate),
             "duracion": 2,
             "descripcion": "lorem5",
             "cuposRestantes": this.state.cupos
         };
+        let monito = this.state.monitoriasBrindadas;
+        monito.push(json);
         this.setState({
-            modalShow: false
+            modalShow : false,
+            monitoriasBrindadas : monito
         })
-        fetch("http://localhost:3001/users/fjgonzalez/monitorias",
+        fetch("https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez/monitorias",
             {
                 method: 'POST',
                 body: JSON.stringify(json),
@@ -112,19 +112,110 @@ export default class dashboardtutor extends Component {
             );
     }
 
+    cargarGraficos() {
+
+        let stats = [];
+        this.state.monitoriasBrindadas.map((e,i) => {
+            if(e.calificacionServicio === 0){
+                stats[0]++;
+            }
+            else if(e.calificacionServicio === 1){
+                stats[1]++
+            }
+            else if(e.calificacionServicio === 2){
+                stats[2]++
+            }
+            else if(e.calificacionServicio === 2){
+                stats[2]++
+            }
+            else if(e.calificacionServicio === 3){
+                stats[3]++
+            }
+            else if(e.calificacionServicio === 4){
+                stats[4]++
+            }
+            else if(e.calificacionServicio === 5){
+                stats[5]++
+            }
+        })
+                
+        var p = {
+            datasets: [{
+                data: [10,20,40,30,10,20],
+                backgroundColor: ["#43efc7", "#484349", "#6243ef","#f7f0f0", "#8af3ff", "#4362ef"]
+            }],
+            labels: [
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5'
+            ]
+        };
+
+        var p2 = {
+            datasets: [{
+                data: [22,30,50,30,30,25],
+                backgroundColor: ["#43efc7", "#484349", "#6243ef","#f7f0f0", "#8af3ff", "#4362ef"]
+            }],
+            labels: [
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5'
+            ]
+        };
+      
+        var otherSk = document.getElementById("reporte").getContext("2d");
+        new Chart(otherSk, {
+            type: 'pie',
+            data: p,
+            options: {
+                legend: {
+                    position: 'right',
+                    fontFamily: 'Ubuntu',
+                    labels : {
+                        fontColor : "black"
+                    }
+                },
+                animation: {
+                    animateScale: true,
+                    duration: 2500
+                }
+            }
+        });
+
+        var otherSk2 = document.getElementById("reporteClie").getContext("2d");
+        new Chart(otherSk2, {
+            type: 'horizontalBar',
+            data: p2,
+            options: {
+                animation: {
+                    animateScale: true,
+                    duration: 2500
+                },
+                legend : {
+                    display : false
+                }
+            }
+        });
+    }
+
+    
+
     componentDidMount() {
-        fetch('http://localhost:3001/users/fjgonzalez')
+        fetch('https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez')
             .then(res => res.json())
             .then(json => { 
                 let idsMonitorias = json[0].monitoriasOfrecidas;
                 let tempMonitorias = this.state.monitoriasBrindadas;
-                this.setState({
-                    monitoriasBrindadas: json[0].monitoriasOfrecidas
-                })
-                for (let index = 0; index < this.state.monitoriasBrindadas.length; index++) 
+                for (let index = 0; index < idsMonitorias.length; index++) 
                 {
-                    let monit = this.state.monitoriasBrindadas[index];
-                    fetch('http://localhost:3001/monitorias/'+monit)
+                    let monit = idsMonitorias[index];
+                    fetch('https://radiant-hollows-88985.herokuapp.com/monitorias/'+monit)
                     .then(res => res.json())
                     .then(json => {
                         tempMonitorias.push(json[0]);
@@ -137,6 +228,7 @@ export default class dashboardtutor extends Component {
 
             }
             );
+            this.cargarGraficos();
     }
 
 
@@ -247,7 +339,7 @@ export default class dashboardtutor extends Component {
                     </Row>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="outline-success" className="modalButtons" onClick={crearTutoria}>Guardar cambios</Button>
+                    <Button variant="outline-success" className="modalButtons" onClick={this.crearTutoria}>Guardar cambios</Button>
                     <Button variant="outline-success" className="modalButtons" onClick={props.onHide}>Cerrar</Button>
                 </Modal.Footer>
             </Modal>
@@ -264,7 +356,7 @@ export default class dashboardtutor extends Component {
                             <Col>
                                 <Card >
                                     <Card.Body className="text-right">
-                                        <img onClick={() => this.setModalShow(true)} className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg" />
+                                        <img onClick={this.setModalShow} className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg" />
                                         <strong id="nueva">Nueva</strong>
                                         <br></br>
                                         <strong id="tutoria">Tutoría</strong>
@@ -276,18 +368,30 @@ export default class dashboardtutor extends Component {
                             <Col>
                                 <Card>
                                     <Card.Body>
-
+                                        <Row>
+                                            <Col className="text-center">
+                                            <strong >Calificaciones</strong>
+                                            <br></br>
+                                            <canvas id="reporte" alt="Reporte de calificaciones"></canvas>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col className="text-center">
+                                            <strong >Materias</strong>
+                                            <br></br>
+                                            <canvas id="reporteClie" alt="Reporte de tipos de cliente"></canvas>
+                                            </Col>
+                                        </Row>
                                     </Card.Body>
                                 </Card>
                             </Col>
                         </Row>
                     </Col>
-                    <Col md={7} >
-                        <Card>
-                            <Card.Body>
-
-                            </Card.Body>
-                        </Card>
+                    <Col md={7} className="text-center">
+                        <strong id="mistutorias">Mis tutorias</strong>
+                        <div className="scrollbar scrollbar-primary">
+                            {this.state.monitoriasBrindadas.map((e,i) => <TutoriaBrindada key={i} value={e}/>)}
+                        </div>
                     </Col>
                 </Row>
                 <this.MyVerticallyCenteredModal show={this.state.modalShow} onHide={() => this.setModalShow(false)} />

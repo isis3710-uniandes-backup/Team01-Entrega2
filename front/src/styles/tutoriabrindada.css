@@ -1,0 +1,51 @@
+.tutorias{
+    margin-bottom: 1em;
+    height : 11em;
+    transition: all .8s;
+}   
+.tutorias:hover{
+    box-shadow: 0 6px 6px #888b85;
+    transform: scale(0.9) translateZ(0);
+
+}
+.cupos{
+    font-size: 0.9rem;
+    text-align: right ;
+}
+.tutoriasBody{
+    padding: 0.5rem !important;
+
+}
+.card-title, .card-subtitle, .fecha,.costo, .hora{
+    text-align: left;
+}
+ .costo{
+    font-weight: bolder;
+}
+.stars{
+    height: 1.75em;
+    text-align: right;
+}
+.fecha, .hora, .costo{
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+.fecha{
+    font-weight: 500;
+}
+.MuiRating-root{
+    color: #3cdfb9 !important;
+}
+.titulosCharts{
+    margin-bottom: 200rem;
+}
+#reporte, #reporteClie{
+    margin-top: 0.8rem;
+    margin-bottom: 0.9rem;
+    
+}
+@media only screen and (max-width: 500px) {
+    .tutorias {
+      width: 439px !important;
+    }
+  }

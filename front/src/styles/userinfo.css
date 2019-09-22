@@ -1,0 +1,69 @@
+#panelOpciones{
+    background-color: #fdfffc;
+    border-radius: 8px;
+    margin:20px;
+   
+   
+}
+
+#informacion{
+    background-color: #fdfffc;
+    border-radius: 8px;
+    margin:20px;
+   
+
+}
+
+#userImg{
+    width: 230;
+    height: 230px;
+}
+#contenedor{
+    background-color: #e2e2e4;
+    margin: 0px;
+    padding-top : 30px;
+    padding-left : 25px;
+    padding-right: 25px;
+}
+#form{
+    margin: 20px;
+}
+
+#sidebar {
+    
+    background:#fdfffc;
+    color: #484349;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    
+    padding: 20px;
+    margin: auto;
+}
+
+#sidebar ul.components {
+    padding: 20px;
+    width: 300px;
+}
+
+#actualizar{
+    background: #43efc7;
+    border: #43efc7;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #43efc7;
+    background: #fdfffc;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #484349;
+    background: #e2e2e4;
+    
+}
