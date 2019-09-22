@@ -10,8 +10,15 @@ export default class tutoriabrindada extends Component {
         duracion: this.props.value.duracion,
         horaFinal: "",
         costo: this.props.value.costo,
-        cupos : this.props.value.cuposRestantes
+        cupos : this.props.value.cuposRestantes,
+        id : this.props.value._id
     }
+
+    updateTutoria = e => {
+        this.props.onClick(e, this.state.id);
+    }
+
+
     componentDidMount() {
         let init = this.state.fecha.split("T")[1].split(".")[0];
         let horaFina = parseInt(init.split(":")[0]);
@@ -31,7 +38,7 @@ export default class tutoriabrindada extends Component {
     render() {
         return (
             <div >
-                <Card className="tutorias" >
+                <Card className="tutorias" onClick={this.updateTutoria}>
                     <Card.Body className="tutoriasBody">
                         <Card.Title>
                             <strong>Monitoria de {this.state.materia}</strong>
