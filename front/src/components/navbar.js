@@ -75,11 +75,11 @@ export default class Navbar extends Component {
                                     <button type="button" className="btn btnImagen dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img className="img-circle" src={UserLogo} alt="Logo of an user" width="30" height="30"></img> </button>
                                     <div className="dropdown-menu">
-                                        <Link className="dropdown-item" to={{pathname: 'users/'+this.state.usuario, 
+                                        <Link className="dropdown-item"  to={{  pathname: '/users/'+this.state.usuario, 
                                     state : {
                                         user : this.state.usuario
                                     }}}>Ajustes de cuenta</Link>
-                                        <Link className="dropdown-item"  to={{pathname: 'tutor/'+this.state.usuario,
+                                        <Link className="dropdown-item"  to={{pathname: '/tutor/'+this.state.usuario,
                                     state : {
                                         user : this.state.usuario
                                     }}}>Soy tutor</Link>

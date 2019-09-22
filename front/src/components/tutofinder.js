@@ -29,8 +29,8 @@ export default class tutofinder extends Component {
                             <Route exact path="/" component={Home} />
                             { this.state.logueado ?  <div>
                             <Route exact path="/tutor/:username" component={DashBoardTutor} />
-                            <Route path="/users/:user" component={UserInfo} />
-                            </div> : <Home/> }
+                            <Route exact path="/users/:user" component={UserInfo} />
+                            </div> : <Route path="" component={Home}/> }
                  
                         </div>
                 </BrowserRouter>
