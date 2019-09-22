@@ -10,6 +10,13 @@
     padding-right: 25px;
     
 }
+#nuevaTutoria:hover{
+    box-shadow:  10px 10px #71746e;
+    margin : 5px
+}
+#nuevaTutoria{
+    transition: all 0.6s;
+}
 .principal{
     min-height: 100vh;
 }

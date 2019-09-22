@@ -97,7 +97,7 @@ export default class dashboardtutor extends Component {
             ruta = "https://radiant-hollows-88985.herokuapp.com/monitorias/"+this.state.idTutoria;
             metodo = 'PUT';
         }
-        console.log(ruta);
+        console.log(this.state);
         e.preventDefault();
         let json = {
             "tipo": this.state.grupal ? "Grupal" : "Individual",
@@ -374,7 +374,7 @@ export default class dashboardtutor extends Component {
                     <Col md={5}>
                         <Row className="secundaria">
                             <Col>
-                                <Card onClick={this.setModalShow}>
+                                <Card  id="nuevatutoria" onClick={this.setModalShow}>
                                     <Card.Body className="text-right">
                                         <img onClick={this.setModalShow} className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg" />
                                         <strong id="nueva">Nueva</strong>
