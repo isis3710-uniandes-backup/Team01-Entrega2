@@ -9,7 +9,7 @@ export default class Navbar extends Component {
         this.state = {
             categorias: [],
             busqueda: "",
-            usuario: {},
+            usuario:"" ,
             logueado:false,
             logFunc: this.props.logFunc
         }
@@ -43,7 +43,7 @@ export default class Navbar extends Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="#">TutoFinder</a>
+                    <a className="navbar-brand" href="#"> <img className="img-circle" src={UserLogo} alt="Generic placeholder image" width="40" height="40"></img>TutoFinder</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -58,7 +58,7 @@ export default class Navbar extends Component {
                                     Categorias
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    {this.state.categorias.map((e, i) => <a className="dropdown-item" href="#" key={i}>{e.nombre}</a>)}
+                                    {this.state.categorias.map((e, i) => <a className="dropdown-item" href={e.rutaFront} key={i}>{e.nombre}</a>)}
                                 </div>
                             </li>
                         </ul>
@@ -83,7 +83,7 @@ export default class Navbar extends Component {
                                 <a type="button" className="nav-link" data-toggle="modal" data-target="#exampleModal">
                                     Log In </a>
                                 <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <LogIn changeLogInStatus={this.logueado} />
+                                    <LogIn changeLogInStatus={this.loguear} />
                                 </div>
                             </li>
                             <li className="nav-item">
@@ -91,7 +91,7 @@ export default class Navbar extends Component {
                                     Register </a>
                             </li>
                             <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <Register changeLogInStatus={this.logueado} />
+                                <Register changeLogInStatus={this.loguear} />
                             </div>
                         </ul> }
                         
