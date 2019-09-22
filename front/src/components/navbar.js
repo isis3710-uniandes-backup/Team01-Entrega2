@@ -3,8 +3,7 @@ import LogIn from "./login/LogIn"
 import Register from "./login/Register"
 import UserLogo from "../imgs/usr.png"
 import '../styles/navbar.css';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { Link } from "react-router-dom";
 
 
 export default class Navbar extends Component {
@@ -72,13 +71,16 @@ export default class Navbar extends Component {
                         </form>
                         {this.state.logueado ? <ul className="nav navbar-nav ml-auto">
                             <li className="nav-item dropdown">
-                                <div class="btn-group dropleft">
-                                    <button type="button" class="btn btnImagen dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="btn-group dropleft">
+                                    <button type="button" className="btn btnImagen dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img className="img-circle" src={UserLogo} alt="Generic placeholder image" width="30" height="30"></img> </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Ajustes de cuenta</a>
-                                        <a class="dropdown-item" href="#">Mis tutorias</a>
-                                        <a class="dropdown-item" href="#">Cerrar sesion</a>
+                                    <div className="dropdown-menu">
+                                        <Link className="dropdown-item" to={{pathname: 'users/'+this.state.usuario, 
+                                    state : {
+                                        user : this.state.usuario
+                                    }}}>Ajustes de cuenta</Link>
+                                        <a className="dropdown-item" href="#">Mis tutorias</a>
+                                        <a className="dropdown-item" href="#">Cerrar sesion</a>
                                     </div>
                                 </div>
                             </li>

@@ -13,7 +13,7 @@ export default class userinfo extends Component {
         this.state={
 
             estado: "mostrarForm",
-            usuario:this.props.usuario,
+            usuario:this.props.location.state.user,
             nombre:this.props.nombre,
             apellidos:this.props.apellidos,
             contrasenna:this.props.contrasenna,
@@ -26,7 +26,8 @@ export default class userinfo extends Component {
     }
 
     componentDidMount() {
-        fetch('https://radiant-hollows-88985.herokuapp.com/users/Diany')
+        console.log(this.state.usuario);
+        fetch('https://radiant-hollows-88985.herokuapp.com/users/'+this.state.usuario)
             .then(res => res.json())
             .then(json => {
                 let data = json[0];
@@ -37,7 +38,7 @@ export default class userinfo extends Component {
                 let telf = data.telefono;
                 let correo = data.email;
                 let ced = data.cedula;
-                let idsMonitorias = data.monitoriasRealizadas;
+                let idsMonitorias = data.monitoriasRealizadas === undefined ? [] : data.monitoriasRealizadas;
                 let tempMonitorias = this.state.monitoriasRealizadas;
                 for (let index = 0; index < idsMonitorias.length; index++) 
                 {
