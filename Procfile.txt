@@ -1,2 +1,0 @@
-web: cd front && npm start
-server: node app.js
