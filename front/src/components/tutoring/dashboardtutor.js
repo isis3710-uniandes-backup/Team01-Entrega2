@@ -26,7 +26,10 @@ export default class dashboardtutor extends Component {
         cupos: 0,
         grupal: false,
         tutor: this.props.value,
-        monitoriasBrindadas : []
+        monitoriasBrindadas : [],
+        tituloModal : "Crear una nueva tutoria.",
+        idTutoria : "",
+        tutor : this.props.location.state.user
     }
     underline = {
         '&:after': {
@@ -78,7 +81,24 @@ export default class dashboardtutor extends Component {
             grupal: !this.state.grupal
         })
     }
-    crearTutoria = e => {
+    setActualIdTutoria = (e, id) => {
+        console.log(id);
+        e.preventDefault();
+        this.setState({
+            idTutoria: id,
+            tituloModal: "Editar"
+        });
+        this.setModalShow();
+
+    }
+    modalTutoria = e => {
+        let ruta = `https://radiant-hollows-88985.herokuapp.com/users/${this.state.tutor}/monitorias`;
+        let metodo = 'POST';
+        if(this.state.tituloModal !== "Crear una nueva tutoria."){
+            ruta = "https://radiant-hollows-88985.herokuapp.com/monitorias/"+this.state.idTutoria;
+            metodo = 'PUT';
+        }
+        console.log(this.state);
         e.preventDefault();
         let json = {
             "tipo": this.state.grupal ? "Grupal" : "Individual",
@@ -96,9 +116,10 @@ export default class dashboardtutor extends Component {
             modalShow : false,
             monitoriasBrindadas : monito
         })
-        fetch("https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez/monitorias",
+
+        fetch(ruta,
             {
-                method: 'POST',
+                method: metodo,
                 body: JSON.stringify(json),
                 headers: {
                     'Content-Type': 'application/json'
@@ -110,6 +131,7 @@ export default class dashboardtutor extends Component {
             .catch(error =>
                 console.log("Error" + error)
             );
+            this.refreshTutorias();
     }
 
     cargarGraficos() {
@@ -207,7 +229,7 @@ export default class dashboardtutor extends Component {
     
 
     componentDidMount() {
-        fetch('https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez')
+        fetch(`https://radiant-hollows-88985.herokuapp.com/users/${this.state.tutor}`)
             .then(res => res.json())
             .then(json => { 
                 let idsMonitorias = json[0].monitoriasOfrecidas;
@@ -251,7 +273,7 @@ export default class dashboardtutor extends Component {
         const grupal = this.state.grupal;
         const setGrupal = this.setGrupal;
 
-        const crearTutoria = this.crearTutoria;
+        const titulo = this.state.tituloModal;
 
         const showModal = this.state.modalShow;
         return (
@@ -262,13 +284,13 @@ export default class dashboardtutor extends Component {
             >
                 <Modal.Body>
                     <Modal.Title className="text-center" id="contained-modal-title-vcenter">
-                        Crear una nueva tutoría.
+                        {titulo}
               </Modal.Title>
                     <Row>
                         <Col md={6} xs={6}>
                             <TextField
                                 required
-                                id="standard-required"
+                                id="standard-required2"
                                 label="Materia"
                                 defaultValue={course}
                                 onChange={setCourseNewTutoria}
@@ -339,7 +361,7 @@ export default class dashboardtutor extends Component {
                     </Row>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="outline-success" className="modalButtons" onClick={this.crearTutoria}>Guardar cambios</Button>
+                    <Button variant="outline-success" className="modalButtons" onClick={this.modalTutoria}>Guardar cambios</Button>
                     <Button variant="outline-success" className="modalButtons" onClick={props.onHide}>Cerrar</Button>
                 </Modal.Footer>
             </Modal>
@@ -354,7 +376,7 @@ export default class dashboardtutor extends Component {
                     <Col md={5}>
                         <Row className="secundaria">
                             <Col>
-                                <Card >
+                                <Card  id="nuevaTutoria" onClick={this.setModalShow}>
                                     <Card.Body className="text-right">
                                         <img onClick={this.setModalShow} className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg" />
                                         <strong id="nueva">Nueva</strong>
@@ -387,14 +409,14 @@ export default class dashboardtutor extends Component {
                             </Col>
                         </Row>
                     </Col>
-                    <Col md={7} className="text-center">
+                    <Col md={7} className="text-center justify-content-center">
                         <strong id="mistutorias">Mis tutorias</strong>
                         <div className="scrollbar scrollbar-primary">
-                            {this.state.monitoriasBrindadas.map((e,i) => <TutoriaBrindada key={i} value={e}/>)}
+                            {this.state.monitoriasBrindadas.map((e,i) => <TutoriaBrindada onClick={this.setActualIdTutoria} key={i} value={e}/>)}
                         </div>
                     </Col>
                 </Row>
-                <this.MyVerticallyCenteredModal show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
+                <this.MyVerticallyCenteredModal show={this.state.modalShow} onHide={this.setModalShow} />
             </div>
         )
     }

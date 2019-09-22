@@ -46,6 +46,6 @@
 }
 @media only screen and (max-width: 500px) {
     .tutorias {
-      width: 439px !important;
+      width: 1rem !important;
     }
   }

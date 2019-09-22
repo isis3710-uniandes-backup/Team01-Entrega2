@@ -11,8 +11,9 @@ export default class userinfo extends Component {
         super(props);
 
         this.state={
+
             estado: "mostrarForm",
-            usuario:this.props.usuario,
+            usuario:this.props.location.state.user,
             nombre:this.props.nombre,
             apellidos:this.props.apellidos,
             contrasenna:this.props.contrasenna,
@@ -25,7 +26,8 @@ export default class userinfo extends Component {
     }
 
     componentDidMount() {
-        fetch('https://radiant-hollows-88985.herokuapp.com/users/a')
+        console.log(this.state.usuario);
+        fetch('https://radiant-hollows-88985.herokuapp.com/users/'+this.state.usuario)
             .then(res => res.json())
             .then(json => {
                 let data = json[0];
@@ -36,7 +38,7 @@ export default class userinfo extends Component {
                 let telf = data.telefono;
                 let correo = data.email;
                 let ced = data.cedula;
-                let idsMonitorias = data.monitoriasRealizadas;
+                let idsMonitorias = data.monitoriasRealizadas === undefined ? [] : data.monitoriasRealizadas;
                 let tempMonitorias = this.state.monitoriasRealizadas;
                 for (let index = 0; index < idsMonitorias.length; index++) 
                 {
@@ -63,7 +65,30 @@ export default class userinfo extends Component {
     }
 
     putRequest=()=>{
+        let ruta = "https://radiant-hollows-88985.herokuapp.com/users/students/Diany";
+        let metodo = 'PUT';
+        console.log(this.state.nombre);
+        let json = {
+            "nombre": this.state.nombre,
+            "apellidos": this.state.apellidos,
+            "email": this.state.email,
+            "telefono": this.state.telefono,
+            "cedula": this.state.cedula
+        };
 
+        fetch(ruta,
+            {
+                method: metodo,
+                body: JSON.stringify(json),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.text())
+            .then(response =>
+                console.log("Success" + response))
+            .catch(error =>
+                console.log("Error" + error)
+            );
     }
 
     mostrarTutorias=()=>{
@@ -134,15 +159,9 @@ export default class userinfo extends Component {
                                 <h1>Información de tu cuenta</h1>
                                     <Form>
                                         <Form.Group>
-                                            <Form.Label>Usuario</Form.Label>
-                                            <Form.Control
-                                            onChange = {this.handleUser}
-                                            value ={this.state.usuario} />
-                                        </Form.Group>
-                                        <Form.Group>
                                             <Form.Label>Nombre</Form.Label>
                                             <Form.Control 
-                                            onChange = {this.handleUser}
+                                            onChange = {this.handleNombre}
                                             value ={this.state.nombre} />
                                         </Form.Group>
                                         <Form.Group>
@@ -169,7 +188,7 @@ export default class userinfo extends Component {
                                             onChange = {this.handleCedula}
                                             value ={this.state.cedula} />
                                         </Form.Group>
-                                        <Button id="actualizar">Actualizar</Button>
+                                        <Button id="actualizar" onClick={this.putRequest}>Actualizar</Button>
                                     </Form>
                             </div>  
                             </Col>

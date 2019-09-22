@@ -4,11 +4,19 @@
     }
   }
 #dashboard{
-    background-color: #e2e2e4;
+    background-color: hsl(0, 29%, 97%);
     padding-top : 30px;
     padding-left : 25px;
     padding-right: 25px;
     
+}
+#nuevaTutoria:hover{
+    box-shadow:  0 3px 3px #5b5e57;
+    transform: scale(1.02) translateZ(0);
+
+}
+#nuevaTutoria{
+    transition: all .8s;
 }
 .principal{
     min-height: 100vh;
@@ -24,10 +32,11 @@
 }
 #tutoria{
     padding-right: 6px;
-    font-size: 2rem;
+    font-size: 2.0rem;
 }
 #nueva{
     padding-right: 6px;
+    font-size: 1.0rem;  
     color: #4e4c4c;
 }
 #mistutorias{
@@ -40,12 +49,21 @@
 #plus{
     max-width: 100px;
     margin-top : -50px;
+    transition: all .8s;
+
+}
+#plus:hover {
+    box-shadow: 0 6px 6px #888b85;
+    transform: scale(1.05) translateZ(0);
 }
 h1,h2,h3, h4, h5, h6, p, span{
     font-family: 'Ubuntu', sans-serif !important
 }
 .modal-title{
     font-weight: 700;
+}
+.modal-content{
+    border-color: #8af3ff;
 }
 /* material */
 .MuiPickersToolbar-toolbar, .MuiPickersDay-daySelected{
@@ -55,8 +73,8 @@ h1,h2,h3, h4, h5, h6, p, span{
     color:  #43efc7 !important;
 }
 .modalButtons{
-    border-color:rgb(70, 75, 73);
-    color:rgb(70, 75, 73);
+    border-color:#8af3ff;
+    color:#4ebeca;
 }
 
 .modalButtons:hover{

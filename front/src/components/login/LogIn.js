@@ -5,35 +5,32 @@ class LogIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            password: "",
-            rememberMe: false,
-            changeLogInStatus:this.props.changeLogInStatus
+            usuario: "",
+            password: ""
         };
         this.changeValue = this.changeValue.bind(this);
         this.logIn = this.logIn.bind(this);
-        this.changeCK = this.changeCK.bind(this);
     }
     logIn() {
-        if (this.state.email !== "" && this.state.password !== "") {
-            fetch('/users/'+this.state.email)
-            .then(res => res.json())
-            .then(json => {
-                if(json.password===this.state.password){
-                    this.state.changeLogInStatus(json.usuario);
-                    alert("Welcome");
-                }else{
-                    alert("Please chek the email and the password");
-                }
-            });  
+        if (this.state.usuario !== "" && this.state.password !== "") {
+            fetch('https://radiant-hollows-88985.herokuapp.com/users/' + this.state.usuario)
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json);
+                    if (json[0].contrasenna === this.state.password) {
+                        this.props.changeLogInStatus(json[0].usuario);
+                    } else {
+                        console.error("Contrasenia incorrecta")
+                    }
+                });
         } else {
-            alert("Please fill all the fields");
+            console.error("Falta info")
         }
     }
     changeValue(e) {
-        if (e.target.id === "email") {
+        if (e.target.id === "usuario") {
             this.setState({
-                email: e.target.value
+                usuario: e.target.value
             });
         } else {
             this.setState({
@@ -41,12 +38,6 @@ class LogIn extends Component {
             });
         }
     }
-    changeCK() {
-        this.setState({
-            rememberMe: !this.state.rememberMe
-        });
-    }
-
     render() {
         return (
 
@@ -60,19 +51,15 @@ class LogIn extends Component {
                     </div>
                     <div className="modal-body">
                         <div className="input-group mb-3">
-                            <input id="email" type="text" placeholder="email" className="form-control" aria-label="email" aria-describedby="basic-addon1" value={this.state.email} onChange={this.changeValue}></input>
+                            <input id="usuario" type="text" placeholder="usuario" className="form-control" aria-label="usuario" aria-describedby="basic-addon1" value={this.state.usuario} onChange={this.changeValue}></input>
                         </div>
                         <div className="input-group mb-3">
                             <input id="password" placeholder="contraseña" type="password" className="form-control" aria-label="password" aria-describedby="basic-addon1" value={this.state.password} onChange={this.changeValue}></input>
                         </div>
-                        <div className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" id="defaultUnchecked" onChange={this.changeCK}></input>
-                            <label className="custom-control-label" htmlFor="defaultUnchecked">Remember Me</label>
-                        </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" onClick={this.logIn} data-dismiss="modal">Log In</button>
+                        <button type="button" className="btn btn-primary"data-dismiss="modal" onClick={this.logIn}>Log In</button>
                     </div>
                 </div>
             </div>
