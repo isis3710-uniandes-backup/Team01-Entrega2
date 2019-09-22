@@ -10,8 +10,6 @@
     background-color: #fdfffc;
     border-radius: 8px;
     margin:20px;
-   
-
 }
 
 #userImg{
@@ -63,7 +61,6 @@
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #484349;
-    background: #e2e2e4;
+    color: #43efc7;
     
 }

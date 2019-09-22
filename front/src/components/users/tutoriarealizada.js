@@ -1,23 +1,22 @@
-import React, { Component } from 'react'
-import { Card } from 'react-bootstrap';
-import '../../styles/tutoriabrindada.css';
+import React, { Component } from 'react';
+import {Card} from 'react-bootstrap';
 import Rating from '@material-ui/lab/Rating';
-export default class tutoriabrindada extends Component {
-    state = {
-        materia: this.props.value.materias,
-        direccion: this.props.value.direccion,
-        fecha: this.props.value.fecha,
-        duracion: this.props.value.duracion,
-        horaFinal: "",
-        costo: this.props.value.costo,
-        cupos : this.props.value.cuposRestantes,
-        id : this.props.value._id
-    }
+import '../../styles/tutoriarealizada.css';
+export default class tutoriarealizada extends Component {
 
-    updateTutoria = e => {
-        this.props.onClick(e, this.state.id);
-    }
+    constructor(props){
+        super(props);
 
+        this.state={
+            materia: this.props.value.materias,
+            direccion: this.props.value.direccion,
+            fecha: this.props.value.fecha,
+            duracion: this.props.value.duracion,
+            horaFinal: "",
+            costo: this.props.value.costo,
+            cupos : this.props.value.cuposRestantes
+        };
+    }
 
     componentDidMount() {
         let init = this.state.fecha.split("T")[1].split(".")[0];
@@ -32,13 +31,13 @@ export default class tutoriabrindada extends Component {
             horaFinal: horaFinalle
         })
         console.log(this.state.horaFinal)
-
-
     }
+
     render() {
-        return (
-            <div >
-                <Card className="tutorias" onClick={this.updateTutoria}>
+
+        return (           
+                <div>
+                    <Card id="tutorias" >
                     <Card.Body className="tutoriasBody">
                         <Card.Title>
                             <strong>Monitoria de {this.state.materia}</strong>
@@ -55,8 +54,9 @@ export default class tutoriabrindada extends Component {
                         </div>
                     </Card.Body>
                 </Card>
+                </div>
+           
 
-            </div>
         )
     }
 }

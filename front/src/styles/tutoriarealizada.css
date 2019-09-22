@@ -1,7 +1,8 @@
-.tutorias{
+#tutorias{
     margin-bottom: 1em;
     height : 11em;
     transition: all .8s;
+    background: #e2e2e4;
 }   
 .tutorias:hover{
     box-shadow: 0 6px 6px #888b85;
@@ -46,6 +47,6 @@
 }
 @media only screen and (max-width: 500px) {
     .tutorias {
-      width: 1rem !important;
+      width: 99% !important;
     }
   }
