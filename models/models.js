@@ -11,7 +11,7 @@ var monitoriaSchema = new mongoose.Schema({
     calificacionServicio: {type: Number, default: 0},
     tipo: {type: String, enum: ["Individual", "Grupal"], required: true},
     finalizada: {type: Boolean, default: false},
-    materias: {type: [String], required: true, minlength: 1, default: undefined}
+    materias: {type: String, required: true, minlength: 1, default: undefined}
 });
 
 var estudianteSchema = new mongoose.Schema({
@@ -45,7 +45,8 @@ var materiaSchema = new mongoose.Schema({
 var categoriaSchema = new mongoose.Schema({
     nombre: {type: String, index: true, unique: true, required: true},
     descripcion: String,
-    materias: {type: [String], default: []}
+    materias: {type: [String], default: []},
+    rutaFront: {type: String, default: "https://radiant-hollows-88985.herokuapp.com/"}
 });
 
 module.exports = mongoose.model('Tutor', tutorSchema);
