@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Row, Card, Modal, Button, FormGroup } from 'react-bootstrap';
+import { Col, Row, Card, Modal, Button, FormGroup, Toast } from 'react-bootstrap';
 import '../../styles/dashboardtutor.css';
 import {
     MuiPickersUtilsProvider,
@@ -14,6 +14,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 
+const fetch = require('node-fetch');
+
+
 export default class dashboardtutor extends Component {
 
     state = {
@@ -23,8 +26,10 @@ export default class dashboardtutor extends Component {
         category: "",
         course: "",
         costo: "$",
-        cupos: "0",
-        grupal: false
+        cupos: 0,
+        grupal: false,
+        tutor: this.props.value,
+        monitoriasBrindadas : []
     }
     underline = {
         '&:after': {
@@ -76,6 +81,64 @@ export default class dashboardtutor extends Component {
             grupal: !this.state.grupal
         })
     }
+    crearTutoria = () => {
+
+        let json = {
+            "tipo": this.state.grupal ? "Grupal" : "Individual",
+            "costo": this.state.costo.replace("$", ""),
+            "materias": [this.state.course],
+            "direccion": this.state.selectedAddress,
+            "fecha": this.state.selectedDate,
+            "duracion": 2,
+            "descripcion": "lorem5",
+            "cuposRestantes": this.state.cupos
+        };
+        this.setState({
+            modalShow: false
+        })
+        fetch("http://localhost:3001/users/fjgonzalez/monitorias",
+            {
+                method: 'POST',
+                body: JSON.stringify(json),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.text())
+            .then(response =>
+                console.log("Success" + response))
+            .catch(error =>
+                console.log("Error" + error)
+            );
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:3001/users/fjgonzalez')
+            .then(res => res.json())
+            .then(json => { 
+                let idsMonitorias = json[0].monitoriasOfrecidas;
+                let tempMonitorias = this.state.monitoriasBrindadas;
+                this.setState({
+                    monitoriasBrindadas: json[0].monitoriasOfrecidas
+                })
+                for (let index = 0; index < this.state.monitoriasBrindadas.length; index++) 
+                {
+                    let monit = this.state.monitoriasBrindadas[index];
+                    fetch('http://localhost:3001/monitorias/'+monit)
+                    .then(res => res.json())
+                    .then(json => {
+                        tempMonitorias.push(json[0]);
+                    })
+                    
+                }
+                this.setState({
+                    monitoriasBrindadas: tempMonitorias
+                })
+
+            }
+            );
+    }
+
 
     MyVerticallyCenteredModal = (props) => {
         const selectedDate = this.state.selectedDate;
@@ -96,8 +159,11 @@ export default class dashboardtutor extends Component {
         const grupal = this.state.grupal;
         const setGrupal = this.setGrupal;
 
+        const crearTutoria = this.crearTutoria;
+
+        const showModal = this.state.modalShow;
         return (
-            <Modal
+            <Modal show={showModal}
                 {...props}
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
@@ -136,20 +202,20 @@ export default class dashboardtutor extends Component {
                                 </Grid>
                             </MuiPickersUtilsProvider>
                             <FormGroup>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={grupal}
-                                        onChange={setGrupal}
-                                        value="grupal"
-                                    />
-                                }
-                                label="Grupal"
-                                margin="normal"
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={grupal}
+                                            onChange={setGrupal}
+                                            value="grupal"
+                                        />
+                                    }
+                                    label="Grupal"
+                                    margin="normal"
 
-                            />
+                                />
                             </FormGroup>
-                            
+
                         </Col>
                         <Col md={6} xs={6}>
                             <TextField
@@ -181,7 +247,7 @@ export default class dashboardtutor extends Component {
                     </Row>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="outline-success" className="modalButtons" onClick={props.onHide}>Guardar cambios</Button>
+                    <Button variant="outline-success" className="modalButtons" onClick={crearTutoria}>Guardar cambios</Button>
                     <Button variant="outline-success" className="modalButtons" onClick={props.onHide}>Cerrar</Button>
                 </Modal.Footer>
             </Modal>

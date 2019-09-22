@@ -4,6 +4,7 @@ var ObjectId = require('mongodb').ObjectId;
 const { databaseUser, databasePassword, databaseName } = require('../config');
 const mongoClient = require("mongodb").MongoClient;
 const uri = "mongodb+srv://"+databaseUser+":"+databasePassword+"@cluster0-j6ym9.mongodb.net/test?retryWrites=true&w=majority";
+var cors = require('cors')
 
 
 //connect to mongo db
@@ -235,7 +236,7 @@ function getUsersByUsuario(req, res){
 }
 
 //------------------------ROUTES------------------------------------------
-router.post('/:user/monitorias',(req,res) => postMonitoria(req,res));
+router.post('/:user/monitorias', cors(), (req,res) => postMonitoria(req,res));
 router.post('/tutors',(req,res) => postTutor(req, res));
 router.post('/students',(req,res) => postStudent(req, res));
 
