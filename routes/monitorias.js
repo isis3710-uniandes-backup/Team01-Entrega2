@@ -21,11 +21,11 @@ let conn =  mongoClient.connect(uri, {
  * Modifica una monitoria
  */
 function putMonitoria(req, res){
-    let identificador = req.params.idMonitoria
-    let dataPut = req.body
+    let identificador = req.params.idMonitoria;
+    let dataPut = req.body;
     let id = new ObjectId(identificador);
     conn.then(client => {
-        client.db(databaseName).collection("monitoria").updateOne({_id: id}, {$set: dataPut}, dataPut, (err, data) => {
+        client.db(databaseName).collection("monitorias").updateOne({_id: id}, {$set: dataPut}, dataPut, (err, data) => {
             if (err !=null) throw err;
             res.send(data);
         });

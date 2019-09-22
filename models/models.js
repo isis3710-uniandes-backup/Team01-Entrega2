@@ -11,7 +11,7 @@ var monitoriaSchema = new mongoose.Schema({
     calificacionServicio: {type: Number, default: 0},
     tipo: {type: String, enum: ["Individual", "Grupal"], required: true},
     finalizada: {type: Boolean, default: false},
-    materias: {type: String, required: true, minlength: 1, default: undefined}
+    materias: {type: String, required: true}
 });
 
 var estudianteSchema = new mongoose.Schema({
