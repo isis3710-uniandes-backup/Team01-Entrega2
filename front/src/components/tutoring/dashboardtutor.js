@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
-import { Col, Row, Card, Modal, Button, FormGroup, Toast } from 'react-bootstrap';
+import { Col, Row, Card, Modal, Button, FormGroup } from 'react-bootstrap';
 import '../../styles/dashboardtutor.css';
 import {
     MuiPickersUtilsProvider,
     KeyboardDateTimePicker,
 } from '@material-ui/pickers';
 import TextField from '@material-ui/core/TextField';
-
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
-
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-
-const fetch = require('node-fetch');
+import TutoriaBrindada from './tutoriabrindada';
 
 
 export default class dashboardtutor extends Component {
@@ -41,9 +37,9 @@ export default class dashboardtutor extends Component {
     }
     ];
 
-    setModalShow = state => {
+    setModalShow = () => {
         this.setState({
-            modalShow: state
+            modalShow: !this.state.modalShow
         })
     };
     setSelectedDate = date => {
@@ -93,10 +89,7 @@ export default class dashboardtutor extends Component {
             "descripcion": "lorem5",
             "cuposRestantes": this.state.cupos
         };
-        this.setState({
-            modalShow: false
-        })
-        fetch("http://localhost:3001/users/fjgonzalez/monitorias",
+        fetch("https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez/monitorias",
             {
                 method: 'POST',
                 body: JSON.stringify(json),
@@ -113,18 +106,16 @@ export default class dashboardtutor extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3001/users/fjgonzalez')
+        
+        fetch('https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez')
             .then(res => res.json())
             .then(json => { 
                 let idsMonitorias = json[0].monitoriasOfrecidas;
                 let tempMonitorias = this.state.monitoriasBrindadas;
-                this.setState({
-                    monitoriasBrindadas: json[0].monitoriasOfrecidas
-                })
-                for (let index = 0; index < this.state.monitoriasBrindadas.length; index++) 
+                for (let index = 0; index < idsMonitorias.length; index++) 
                 {
-                    let monit = this.state.monitoriasBrindadas[index];
-                    fetch('http://localhost:3001/monitorias/'+monit)
+                    let monit = idsMonitorias[index];
+                    fetch('https://radiant-hollows-88985.herokuapp.com/monitorias/'+monit)
                     .then(res => res.json())
                     .then(json => {
                         tempMonitorias.push(json[0]);
@@ -264,7 +255,7 @@ export default class dashboardtutor extends Component {
                             <Col>
                                 <Card >
                                     <Card.Body className="text-right">
-                                        <img onClick={() => this.setModalShow(true)} className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg" />
+                                        <img onClick={this.setModalShow} className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg" />
                                         <strong id="nueva">Nueva</strong>
                                         <br></br>
                                         <strong id="tutoria">Tutoría</strong>
@@ -282,12 +273,11 @@ export default class dashboardtutor extends Component {
                             </Col>
                         </Row>
                     </Col>
-                    <Col md={7} >
-                        <Card>
-                            <Card.Body>
-
-                            </Card.Body>
-                        </Card>
+                    <Col md={7} className="text-center">
+                        <strong id="mistutorias">Mis tutorias</strong>
+                        <div className="scrollbar scrollbar-primary">
+                            {this.state.monitoriasBrindadas.map((e,i) => <TutoriaBrindada key={i} value={e}/>)}
+                        </div>
                     </Col>
                 </Row>
                 <this.MyVerticallyCenteredModal show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
