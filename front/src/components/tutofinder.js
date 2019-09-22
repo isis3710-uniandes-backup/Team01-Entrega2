@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import DashBoardTutor from './tutoring/dashboardtutor';
 import Navbar from './navbar'
 import Home from './home/home'
+import UserInfo from './users/userinfo';
 
 export default class tutofinder extends Component {
     constructor(props) {
@@ -26,10 +27,10 @@ export default class tutofinder extends Component {
                             <Navbar logFunc={this.loguear}/>
                             <Route exact path="/" component={Home} />
                             <Route path="/tutor" component={DashBoardTutor} />
-
+                            <Route path="/users/:user" component={UserInfo} />                 
                             <p>Hola amigos</p>
                         </div>
-                    </BrowserRouter>
+                </BrowserRouter>
             </div>
         )
     }
