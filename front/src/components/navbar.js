@@ -56,7 +56,7 @@ export default class Navbar extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Categorias
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -73,13 +73,16 @@ export default class Navbar extends Component {
                             <li className="nav-item dropdown">
                                 <div className="btn-group dropleft">
                                     <button type="button" className="btn btnImagen dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img className="img-circle" src={UserLogo} alt="Generic placeholder image" width="30" height="30"></img> </button>
+                                    <img className="img-circle" src={UserLogo} alt="Logo of an user" width="30" height="30"></img> </button>
                                     <div className="dropdown-menu">
                                         <Link className="dropdown-item" to={{pathname: 'users/'+this.state.usuario, 
                                     state : {
                                         user : this.state.usuario
                                     }}}>Ajustes de cuenta</Link>
-                                        <a className="dropdown-item" href="#">Mis tutorias</a>
+                                        <Link className="dropdown-item"  to={{pathname: 'tutor/'+this.state.usuario,
+                                    state : {
+                                        user : this.state.usuario
+                                    }}}>Soy tutor</Link>
                                         <a className="dropdown-item" href="#">Cerrar sesion</a>
                                     </div>
                                 </div>

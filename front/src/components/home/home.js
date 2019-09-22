@@ -19,7 +19,7 @@ export default class Home extends Component {
         <div id="nosotros" className="row">
           <div className="col-md-12 text-center">
             <h1>Sobre Nosotros</h1>
-            <img className="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Reloj_flat.svg/200px-Reloj_flat.svg.png" alt="Generic placeholder image" width="140" height="140"></img>
+            <img className="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Reloj_flat.svg/200px-Reloj_flat.svg.png" alt="Imagen 1" width="140" height="140"></img>
           </div>
           <div className="col-md-8 col-md-offset-2">
             <div className="about-text text-center">
@@ -32,17 +32,17 @@ export default class Home extends Component {
         <div className="container marketing">
           <div className="row">
             <div className="col-lg-4">
-              <img className="img-circle" src={ofMat} alt="Generic placeholder image" width="140" height="140"></img>
+              <img className="img-circle" src={ofMat} alt="Generic placeholder" width="140" height="140"></img>
               <h2>Oferta de materias</h2>
               <p className="text-justify">Te ofrecemos una gran cantidad de materias y monitores. A diferencia de otras empresas nosotros te ofrecemos tutorias de las materias que necesites, incluso de las especificas de la carrera</p>
             </div>
             <div className="col-lg-4">
-              <img className="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Reloj_flat.svg/200px-Reloj_flat.svg.png" alt="Generic placeholder image" width="140" height="140"></img>
+              <img className="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Reloj_flat.svg/200px-Reloj_flat.svg.png" alt="Generic placeholder1" width="140" height="140"></img>
               <h2>Flexibilidad</h2>
               <p className="text-justify">Sabemos que tienes un horario apretado por eso te ofrecemos la opción de agendar tus monitorias con un tutor a una hora de tu conveniencia </p>
             </div>
             <div className="col-lg-4">
-              <img className="img-circle" src="https://dbf.es/wp-content/uploads/2018/08/referencias.jpg" alt="Generic placeholder image" width="140" height="140"></img>
+              <img className="img-circle" src="https://dbf.es/wp-content/uploads/2018/08/referencias.jpg" alt="Generic placeholde3" width="140" height="140"></img>
               <h2>Las mejores referencias</h2>
               <p className="text-justify">Nuestros tutores cuentan con calificaciones y comentarios para que puedas guiarte al momento de buscar una monitoria</p>
             </div>

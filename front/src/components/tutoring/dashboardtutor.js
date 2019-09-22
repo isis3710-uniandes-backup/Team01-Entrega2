@@ -28,7 +28,8 @@ export default class dashboardtutor extends Component {
         tutor: this.props.value,
         monitoriasBrindadas : [],
         tituloModal : "Crear una nueva tutoria.",
-        idTutoria : ""
+        idTutoria : "",
+        tutor : this.props.location.state.user
     }
     underline = {
         '&:after': {
@@ -91,7 +92,7 @@ export default class dashboardtutor extends Component {
 
     }
     modalTutoria = e => {
-        let ruta = "https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez/monitorias";
+        let ruta = `https://radiant-hollows-88985.herokuapp.com/users/${this.state.tutor}/monitorias`;
         let metodo = 'POST';
         if(this.state.tituloModal !== "Crear una nueva tutoria."){
             ruta = "https://radiant-hollows-88985.herokuapp.com/monitorias/"+this.state.idTutoria;
@@ -228,7 +229,7 @@ export default class dashboardtutor extends Component {
     
 
     componentDidMount() {
-        fetch('https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez')
+        fetch(`https://radiant-hollows-88985.herokuapp.com/users/${this.state.tutor}`)
             .then(res => res.json())
             .then(json => { 
                 let idsMonitorias = json[0].monitoriasOfrecidas;

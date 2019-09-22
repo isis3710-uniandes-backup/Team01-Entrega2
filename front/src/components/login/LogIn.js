@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Toast, ToastHeader } from 'react-bootstrap';
-
 
 class LogIn extends Component {
 
