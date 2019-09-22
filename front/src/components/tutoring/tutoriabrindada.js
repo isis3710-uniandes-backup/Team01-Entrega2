@@ -31,7 +31,7 @@ export default class tutoriabrindada extends Component {
     render() {
         return (
             <div >
-                <Card className="tutorias" onClick="modificar">
+                <Card className="tutorias" >
                     <Card.Body className="tutoriasBody">
                         <Card.Title>
                             <strong>Monitoria de {this.state.materia}</strong>

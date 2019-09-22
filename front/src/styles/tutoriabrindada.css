@@ -36,6 +36,14 @@
 .MuiRating-root{
     color: #3cdfb9 !important;
 }
+.titulosCharts{
+    margin-bottom: 200rem;
+}
+#reporte, #reporteClie{
+    margin-top: 0.8rem;
+    margin-bottom: 0.9rem;
+    
+}
 @media only screen and (max-width: 500px) {
     .tutorias {
       width: 439px !important;
