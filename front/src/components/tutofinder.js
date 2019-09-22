@@ -28,7 +28,6 @@ export default class tutofinder extends Component {
                             <Route exact path="/" component={Home} />
                             <Route path="/tutor" component={DashBoardTutor} />
                             <Route path="/users/:user" component={UserInfo} />                 
-                            <p>Hola amigos</p>
                         </div>
                 </BrowserRouter>
             </div>
