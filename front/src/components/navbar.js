@@ -64,8 +64,7 @@ export default class Navbar extends Component {
                                 </div>
                             </li>
                         </ul>
-                        <form className="form-inline my-2 my-lg-0">
-
+                        <form className="form-inline my-2 my-lg-0 ">
                             <input id="search" className="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" value={this.state.busqueda} onChange={this.changeValue}></input>
                             <button id="buscarButton" className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                         </form>
