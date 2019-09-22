@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import LogIn from "./login/LogIn"
 import Register from "./login/Register"
-import UserLogo from "../imgs/usr.png"
-import '../styles/navbar.css';
-import { Link } from "react-router-dom";
+import UserLogo from "../assets/imgs/usr.png"
+import '../styles/navbar.css'
+import logo from "../assets/imgs/logotype2.png"
+import { Link } from "react-router-dom"
 
 
 export default class Navbar extends Component {
@@ -48,7 +49,7 @@ export default class Navbar extends Component {
             <div>
 
                 <nav className="navbar navbar-expand-lg navbar-light ">
-                    <a className="navbar-brand" href="/"><strong id="tutofinder">TutoFinder</strong></a>
+                    <a className="navbar-brand" href="/"><img className="img-circle" src={logo} alt="Generic placeholder image" width="40" height="40"></img><strong id="tutofinder">TutoFinder</strong></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -82,7 +83,7 @@ export default class Navbar extends Component {
                                     state : {
                                         user : this.state.usuario
                                     }}}>Soy tutor</Link>
-                                        <a className="dropdown-item" href="#">Cerrar sesion</a>
+                                        <a className="dropdown-item">Cerrar sesion</a>
                                     </div>
                                 </div>
                             </li>
