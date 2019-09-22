@@ -13,18 +13,26 @@ import DateFnsUtils from '@date-io/date-fns';
 import TutoriaBrindada from './tutoriabrindada';
 import Chart from 'chart.js';
 
+const compare = {
+    lowestprice: (a, b) => {
+        if (a.calificacion < b.calificacion) return -1;
+        if (a.calificacion> b.calificacion) return 1;
+        return 0;
+    },
+    highestprice: (a, b) => {
+        if (a.calificacion > b.calificacion) return -1;
+        if (a.calificacion < b.calificacion) return 1;
+        return 0;
+    }
+};
+
+
 
 export default class categoria extends Component {
 
     state = {
-        modalShow: false,
 
-        category: "",
-        course: "",
-        costo: "$",
-        cupos: 0,
-        grupal: false,
-        materia: this.props.value,
+        materias: this.props.value.materias,
         tutores : []
     }
     underline = {
@@ -50,7 +58,35 @@ export default class categoria extends Component {
     }
 
 
+    fetchTutors = (filters, sortBy, callback) => dispatch => {
+        return axios
+            this.state.tutores
+            .then(res => {
+                let { products } = res.data;
 
+                if (!!filters && filters.length > 0) {
+                    products = products.filter(p =>
+                        filters.find(f => p.availableSizes.find(size => size === f))
+                    );
+                }
+
+                if (!!sortBy) {
+                    products = products.sort(compare[sortBy]);
+                }
+
+                if (!!callback) {
+                    callback();
+                }
+
+                return dispatch({
+                    type: FETCH_PRODUCTS,
+                    payload: products
+                });
+            })
+            .catch(err => {
+                console.log('Could not fetch products. Try again later.');
+            });
+    };
 
 
 
@@ -86,42 +122,6 @@ export default class categoria extends Component {
         return (
             <div id="dashboard">
                 <Row className="principal">
-                    <Col md={5}>
-                        <Row className="secundaria">
-                            <Col>
-                                <Card >
-                                    <Card.Body className="text-right">
-                                        <img onClick={this.setModalShow} className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg" />
-                                        <strong id="nueva">Nueva</strong>
-                                        <br></br>
-                                        <strong id="tutoria">Tutoría</strong>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        </Row>
-                        <Row className="stats" >
-                            <Col>
-                                <Card>
-                                    <Card.Body>
-                                        <Row>
-                                            <Col className="text-center">
-                                                <strong >Calificaciones</strong>
-                                                <br></br>
-                                                <canvas id="reporte" alt="Reporte de calificaciones"></canvas>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col className="text-center">
-                                                <strong >Materias</strong>
-                                                <br></br>
-                                                <canvas id="reporteClie" alt="Reporte de tipos de cliente"></canvas>
-                                            </Col>
-                                        </Row>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Col>
                     <Col md={7} className="text-center">
                         <strong id="tutores">Tutores</strong>
                         <div className="scrollbar scrollbar-primary">
