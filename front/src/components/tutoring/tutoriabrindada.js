@@ -17,7 +17,7 @@ export default class tutoriabrindada extends Component {
     updateTutoria = e => {
         this.props.onClick(e, this.state.id);
     }
-
+    
 
     componentDidMount() {
         let init = this.state.fecha.split("T")[1].split(".")[0];

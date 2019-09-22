@@ -11,11 +11,12 @@
     
 }
 #nuevaTutoria:hover{
-    box-shadow:  10px 10px #71746e;
-    margin : 5px
+    box-shadow:  0 3px 3px #5b5e57;
+    transform: scale(1.02) translateZ(0);
+
 }
 #nuevaTutoria{
-    transition: all 0.6s;
+    transition: all .8s;
 }
 .principal{
     min-height: 100vh;
@@ -48,6 +49,12 @@
 #plus{
     max-width: 100px;
     margin-top : -50px;
+    transition: all .8s;
+
+}
+#plus:hover {
+    box-shadow: 0 6px 6px #888b85;
+    transform: scale(1.05) translateZ(0);
 }
 h1,h2,h3, h4, h5, h6, p, span{
     font-family: 'Ubuntu', sans-serif !important

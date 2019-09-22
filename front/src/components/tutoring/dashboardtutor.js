@@ -130,6 +130,7 @@ export default class dashboardtutor extends Component {
             .catch(error =>
                 console.log("Error" + error)
             );
+            this.refreshTutorias();
     }
 
     cargarGraficos() {
@@ -288,7 +289,7 @@ export default class dashboardtutor extends Component {
                         <Col md={6} xs={6}>
                             <TextField
                                 required
-                                id="standard-required"
+                                id="standard-required2"
                                 label="Materia"
                                 defaultValue={course}
                                 onChange={setCourseNewTutoria}
@@ -374,7 +375,7 @@ export default class dashboardtutor extends Component {
                     <Col md={5}>
                         <Row className="secundaria">
                             <Col>
-                                <Card  id="nuevatutoria" onClick={this.setModalShow}>
+                                <Card  id="nuevaTutoria" onClick={this.setModalShow}>
                                     <Card.Body className="text-right">
                                         <img onClick={this.setModalShow} className="img-fluid float-left rounded-circle shadow " alt="Nueva tutoria" id="plus" src="/plusIcon.svg" />
                                         <strong id="nueva">Nueva</strong>
@@ -414,7 +415,7 @@ export default class dashboardtutor extends Component {
                         </div>
                     </Col>
                 </Row>
-                <this.MyVerticallyCenteredModal show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
+                <this.MyVerticallyCenteredModal show={this.state.modalShow} onHide={this.setModalShow} />
             </div>
         )
     }
