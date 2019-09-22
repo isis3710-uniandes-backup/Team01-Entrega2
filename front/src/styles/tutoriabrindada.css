@@ -2,7 +2,6 @@
     margin-bottom: 1em;
     height : 11em;
     transition: all .8s;
-    background: #888b85;
 }   
 .tutorias:hover{
     box-shadow: 0 6px 6px #888b85;
