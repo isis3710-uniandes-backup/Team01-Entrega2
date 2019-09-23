@@ -1,22 +1,17 @@
 var mongoose = require('mongoose');
 
-var comentSchema = new mongoose.Schema({
-   usuario: {type: String, required: true},
-   comentario: {type: String, required: true}
-});
-
 var monitoriaSchema = new mongoose.Schema({
     descripcion: {type: String, required: true},
     duracion: {type: Number, required: true},
     cuposRestantes: {type: Number, required: true},
     fecha: {type: Date, required: true},
     direccion: {type: String, required: true},
-    comentarios: {type: [comentSchema]},
+    comentarios: {type: [String], default: []},
     costo: {type: Number, required: true},
     calificacionServicio: {type: Number, default: 0},
     tipo: {type: String, enum: ["Individual", "Grupal"], required: true},
     finalizada: {type: Boolean, default: false},
-    materias: {type: String, required: true}
+    materias: {type: String, required: true, minlength: 1, default: undefined}
 });
 
 var estudianteSchema = new mongoose.Schema({
@@ -59,4 +54,3 @@ module.exports = mongoose.model('Estudiante', estudianteSchema);
 module.exports = mongoose.model('Monitoria', monitoriaSchema);
 module.exports = mongoose.model('Materia', materiaSchema);
 module.exports = mongoose.model('Categoria', categoriaSchema);
-module.exports = mongoose.model('Comentario', comentSchema);

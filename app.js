@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('./models/models');
-var cors = require('cors')
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var monitoriasRouter = require('./routes/monitorias');
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'front/build')));
 // Anything that doesn't match the above, send back index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/front/build/index.html'))
-})
+});
 
 app.use('/categories', categoriesRouter);
 app.use('/monitorias', monitoriasRouter);
