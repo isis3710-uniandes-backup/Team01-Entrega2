@@ -19,6 +19,8 @@ export default class Navbar extends Component {
         }
         this.changeValue = this.changeValue.bind(this);
         this.loguear = this.loguear.bind(this);
+        this.buscar = this.buscar.bind(this);
+        this.cerrarSesion = this.cerrarSesion.bind(this);
 
     }
     loguear(usr) {
@@ -28,15 +30,39 @@ export default class Navbar extends Component {
         });
         this.state.logFunc();
     }
+    buscar() {
+        let url = "";
+        if (this.state.busqueda !== "") {
+            fetch('https://radiant-hollows-88985.herokuapp.com/categories')
+                .then(res => res.json())
+                .then(json => {
+                    url = json[0].rutaFront;
+                });
+            if (url === "") {
+                fetch('https://radiant-hollows-88985.herokuapp.com/categories')
+                .then(res => res.json())
+                .then(json => {
+                    url = json[0].rutaFront;
+                });
+            }
+        }
+    }
+    cerrarSesion() {
+        this.setState({
+            usuario: "",
+            logueado: false
+        });
+        this.state.logFunc();
+    }
     componentDidMount() {
-       /* fetch('/categories')
+        fetch('https://radiant-hollows-88985.herokuapp.com/categories')
             .then(res => res.json())
             .then(json => {
                 this.setState({
                     categorias: json
                 })
             });
-            */
+
     }
     changeValue(e) {
         this.setState({
@@ -48,7 +74,7 @@ export default class Navbar extends Component {
         return (
             <div>
 
-                <nav className="navbar navbar-expand-lg navbar-light ">
+                <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                     <a className="navbar-brand" href="/"><img className="img-circle" src={logo} alt="Generic placeholder image" width="40" height="40"></img><strong id="tutofinder">TutoFinder</strong></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -67,23 +93,27 @@ export default class Navbar extends Component {
                         </ul>
                         <form className="form-inline my-2 my-lg-0 ">
                             <input id="search" className="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" value={this.state.busqueda} onChange={this.changeValue}></input>
-                            <button id="buscarButton" className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                            <button id="buscarButton" className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.buscar}>Buscar</button>
                         </form>
                         {this.state.logueado ? <ul className="nav navbar-nav ml-auto">
                             <li className="nav-item dropdown">
                                 <div className="btn-group dropleft">
                                     <button type="button" className="btn btnImagen dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img className="img-circle" src={UserLogo} alt="Logo of an user" width="30" height="30"></img> </button>
+                                        <img className="img-circle" src={UserLogo} alt="Logo of an user" width="30" height="30"></img> </button>
                                     <div className="dropdown-menu">
-                                        <Link className="dropdown-item"  to={{  pathname: '/users/'+this.state.usuario, 
-                                    state : {
-                                        user : this.state.usuario
-                                    }}}>Ajustes de cuenta</Link>
-                                        <Link className="dropdown-item"  to={{pathname: '/tutor/'+this.state.usuario,
-                                    state : {
-                                        user : this.state.usuario
-                                    }}}>Soy tutor</Link>
-                                        <a className="dropdown-item">Cerrar sesion</a>
+                                        <Link className="dropdown-item" to={{
+                                            pathname: '/users/' + this.state.usuario,
+                                            state: {
+                                                user: this.state.usuario
+                                            }
+                                        }}>Ajustes de cuenta</Link>
+                                        <Link className="dropdown-item" to={{
+                                            pathname: '/tutor/' + this.state.usuario,
+                                            state: {
+                                                user: this.state.usuario
+                                            }
+                                        }}>Soy tutor</Link>
+                                        <a className="dropdown-item" onClick={this.cerrarSesion}>Cerrar sesion</a>
                                     </div>
                                 </div>
                             </li>
