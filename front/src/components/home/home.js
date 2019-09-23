@@ -2,23 +2,26 @@ import React, { Component } from 'react'
 import '../../styles/home.css'
 import ofMat from '../../assets/imgs/ofMat.png'
 import logo from "../../assets/imgs/logotype2.png";
-import desktop from  '../../assets/imgs/desktop.png'
+import desktop from '../../assets/imgs/desktop.png'
 import { Col, Row, Button } from 'react-bootstrap';
 import CategoryBlock from '../tutoring/categoryblock';
 
 export default class Home extends Component {
-  state ={
-    categories : []
+  state = {
+    categories: [{
+      "name": "Matemáticas",
+      "imagen": "https://concepto.de/wp-content/uploads/2013/08/matematicas-e1551990337130.jpg"
+    }]
   }
-  componentDidMount(){
+  componentDidMount() {
     fetch(`https://radiant-hollows-88985.herokuapp.com/categories/`)
-    .then(res => res.json())
-    .then(json => {
-      this.setState({
-        categories : json
-      })
-     }
-    );
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          categories: json
+        })
+      }
+      );
   }
   render() {
     return (
@@ -29,14 +32,17 @@ export default class Home extends Component {
             <br></br>
             <strong id="slogan">Aquí encontrarás los mejores tutores.</strong>
             <br></br>
-            <Button id="empecemosButton"><strong>EMPECEMOS</strong></Button>
+            <Button href="#categories" id="empecemosButton"><strong>EMPECEMOS</strong></Button>
           </Col>
           <Col md={6}>
-          <img className="img" id="logo" src={desktop} alt="Imagen 1"></img>
+            <img className="img" id="logo" src={desktop} alt="Imagen 1"></img>
           </Col>
         </Row>
         <Row id="categories">
-          {this.state.categories.map((e,i) => <Col md={4}><CategoryBlock key={i} value={e}/></Col>)}
+          <Col md={12} id="contenedorTitulo">
+            <h1 id="titleCat">Selecciona la <strong id="emphasis">categoría</strong> que necesitas...</h1>
+          </Col>
+          {this.state.categories.map((e, i) => <CategoryBlock key={i} value={e} />)}
         </Row>
         <div id="nosotros" className="row">
           <div className="col-md-12 text-center">
