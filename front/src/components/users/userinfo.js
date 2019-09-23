@@ -304,7 +304,7 @@ export default class userinfo extends Component {
                             
                             <Col lg={8} md={5} sm={5} id="informacion">
                             <div id="form" className="text-center">  
-                                <h1>Mis tutorias.</h1>
+                                <h1>Tutorías realizadas.</h1>
                                 {this.state.monitoriasRealizadas.map((e,i) => <TutoriaRealizada key={i} value={e}/>)}
                             </div>  
                             </Col>
