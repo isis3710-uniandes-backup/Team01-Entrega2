@@ -15,8 +15,10 @@
 }
 .tutoriasBody{
     padding: 0.5rem !important;
-
 }
+div{
+    font-family: 'Ubuntu', sans-serif;
+  }
 .card-title, .card-subtitle, .fecha,.costo, .hora{
     text-align: left;
 }

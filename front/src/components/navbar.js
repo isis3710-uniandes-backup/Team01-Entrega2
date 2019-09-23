@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import LogIn from "./login/LogIn"
 import Register from "./login/Register"
-import UserLogo from "../imgs/usr.png"
-import '../styles/navbar.css';
-import { Link } from "react-router-dom";
+import UserLogo from "../assets/imgs/usr.png"
+import '../styles/navbar.css'
+import logo from "../assets/imgs/logotype2.png"
+import { Link } from "react-router-dom"
 
 
 export default class Navbar extends Component {
@@ -21,7 +22,6 @@ export default class Navbar extends Component {
 
     }
     loguear(usr) {
-        console.log(usr);
         this.setState({
             usuario: usr,
             logueado: true
@@ -29,13 +29,14 @@ export default class Navbar extends Component {
         this.state.logFunc();
     }
     componentDidMount() {
-        fetch('/categories')
+       /* fetch('/categories')
             .then(res => res.json())
             .then(json => {
                 this.setState({
                     categorias: json
                 })
             });
+            */
     }
     changeValue(e) {
         this.setState({
@@ -48,7 +49,7 @@ export default class Navbar extends Component {
             <div>
 
                 <nav className="navbar navbar-expand-lg navbar-light ">
-                    <a className="navbar-brand" href="/"><strong id="tutofinder">TutoFinder</strong></a>
+                    <a className="navbar-brand" href="/"><img className="img-circle" src={logo} alt="Generic placeholder image" width="40" height="40"></img><strong id="tutofinder">TutoFinder</strong></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -64,8 +65,7 @@ export default class Navbar extends Component {
                                 </div>
                             </li>
                         </ul>
-                        <form className="form-inline my-2 my-lg-0">
-
+                        <form className="form-inline my-2 my-lg-0 ">
                             <input id="search" className="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" value={this.state.busqueda} onChange={this.changeValue}></input>
                             <button id="buscarButton" className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                         </form>
@@ -83,21 +83,21 @@ export default class Navbar extends Component {
                                     state : {
                                         user : this.state.usuario
                                     }}}>Soy tutor</Link>
-                                        <a className="dropdown-item" href="#">Cerrar sesion</a>
+                                        <a className="dropdown-item">Cerrar sesion</a>
                                     </div>
                                 </div>
                             </li>
                         </ul> : <ul className="navbar-nav">
                                 <li className="nav-item">
                                     <button type="button" className="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">
-                                        Log In </button>
+                                        Inicia sesión </button>
                                     <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <LogIn changeLogInStatus={this.loguear} />
                                     </div>
                                 </li>
                                 <li className="nav-item">
                                     <button type="button" className="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal2">
-                                        Register </button>
+                                        Regístrate </button>
                                 </li>
                                 <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <Register changeLogInStatus={this.loguear} />

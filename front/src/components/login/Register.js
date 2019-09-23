@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
 
 class Register extends Component {
 
@@ -13,6 +14,7 @@ class Register extends Component {
             email: "",
             cedula: "",
             rePassword: "",
+            esTutor: false,
             changeLogInStatus: this.props.changeLogInStatus
         }
         this.changeValue = this.changeValue.bind(this);
@@ -47,6 +49,11 @@ class Register extends Component {
             this.setState({
                 apellidos: e.target.value
             });
+        }
+        else if (e.target.id === 'custom-checkbox') {
+            this.setState({
+                esTutor: !this.state.esTutor
+            })
         } else {
             this.setState({
                 rePassword: e.target.value
@@ -64,40 +71,57 @@ class Register extends Component {
             console.log(usr);
             if (usr === undefined) {
                 try {
-                    fetch('/users/students', {
-                        method: 'POST', // or 'PUT'
-                        body: JSON.stringify({
-                            nombre: this.state.nombre,
-                            apellidos: this.state.apellidos,
-                            usuario: this.state.usuario,
-                            contrasenna: this.state.contrasenia,
-                            telefono: this.state.telefono,
-                            email: this.state.email,
-                            cedula: this.state.cedula,
-                            monitoriasRealizadas: []
-                        }), // data can be `string` or {object}!
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                        .then(res => res.json())
-                        .then(json => {
-                            this.state.changeLogInStatus(this.state.nombre);
-                            alert("Welcome");
-
+                    if (this.state.esTutor) {
+                        fetch('https://radiant-hollows-88985.herokuapp.com/users/tutors', {
+                            method : 'POST',
+                            body :  JSON.stringify({
+                                nombre: this.state.nombre,
+                                apellidos: this.state.apellidos,
+                                usuario: this.state.usuario,
+                                contrasenna: this.state.contrasenia,
+                                telefono: this.state.telefono,
+                                email: this.state.email,
+                                cedula: this.state.cedula
+                            }), // data can be `string` or {object}!
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
                         })
-                        .catch(error => console.error('Error:', error));
+                        .then(res => res.json())
+                            .then(json => {
+                                this.state.changeLogInStatus(this.state.usuario);
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
+                    else {
+
+                        fetch('https://radiant-hollows-88985.herokuapp.com/users/students', {
+                            method: 'POST', // or 'PUT'
+                            body: JSON.stringify({
+                                nombre: this.state.nombre,
+                                apellidos: this.state.apellidos,
+                                usuario: this.state.usuario,
+                                contrasenna: this.state.contrasenia,
+                                telefono: this.state.telefono,
+                                email: this.state.email,
+                                cedula: this.state.cedula,
+                                monitoriasRealizadas: []
+                            }), // data can be `string` or {object}!
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(res => res.json())
+                            .then(json => {
+                                this.state.changeLogInStatus(this.state.usuario);
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
                 } catch (e) {
                     console.log(e);
 
                 }
             }
-            else {
-                alert("Ya existe el usuario");
-            }
-        }
-        else {
-            alert("Revisa la contraseña y la confirmación");
         }
     }
 
@@ -113,30 +137,43 @@ class Register extends Component {
                         </button>
                     </div>
                     <div className="modal-body">
-                        <div className="input-group mb-3">
-                            <input id="nombre" type="text" className="form-control" aria-label="nombre" placeholder="nombre" varia-describedby="basic-addon1" value={this.state.nombre} onChange={this.changeValue}></input>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input id="apellido" type="text" className="form-control" aria-label="apellido" placeholder="apellido" varia-describedby="basic-addon1" value={this.state.apellido} onChange={this.changeValue}></input>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input id="email" type="text" className="form-control" aria-label="email" placeholder="email" aria-describedby="basic-addon1" value={this.state.email} onChange={this.changeValue}></input>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input id="cedula" type="text" className="form-control" aria-label="cedula" placeholder="cedula" aria-describedby="basic-addon1" value={this.state.cedula} onChange={this.changeValue}></input>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input id="telefono" type="number" className="form-control" aria-label="telefono" placeholder="telefono" aria-describedby="basic-addon1" value={this.state.telefono} onChange={this.changeValue}></input>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input id="usuario" type="text" className="form-control" aria-label="usuario" placeholder="usuario" aria-describedby="basic-addon1" value={this.state.usuario} onChange={this.changeValue}></input>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input id="contrasenia" type="password" className="form-control" placeholder="contraseña" aria-label="password" aria-describedby="basic-addon1" value={this.state.contrasenia} onChange={this.changeValue}></input>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input id="rePassword" type="password" className="form-control" placeholder="confirmar contraseña" aria-label="re-password" aria-describedby="basic-addon1" value={this.state.rePassword} onChange={this.changeValue}></input>
-                        </div>
+                        <Form.Check
+                            custom
+                            type='checkbox'
+                            id={`custom-checkbox`}
+                            label={`Quiero ser tutor`}
+                            onClick={this.changeValue}
+                        />
+                         <div className="row">
+                            <div className="col-6">
+                                <div className="input-group mb-3">
+                                    <input id="nombre" type="text" className="form-control" aria-label="nombre" placeholder="nombre" varia-describedby="basic-addon1" value={this.state.nombre} onChange={this.changeValue}></input>
+                                </div>
+                                <div className="input-group mb-3">
+                                    <input id="apellido" type="text" className="form-control" aria-label="apellido" placeholder="apellido" varia-describedby="basic-addon1" value={this.state.apellido} onChange={this.changeValue}></input>
+                                </div>
+                                <div className="input-group mb-3">
+                                    <input id="email" type="text" className="form-control" aria-label="email" placeholder="email" aria-describedby="basic-addon1" value={this.state.email} onChange={this.changeValue}></input>
+                                </div>
+                                <div className="input-group mb-3">
+                                    <input id="cedula" type="text" className="form-control" aria-label="cedula" placeholder="cedula" aria-describedby="basic-addon1" value={this.state.cedula} onChange={this.changeValue}></input>
+                                </div>
+                            </div>
+                            <div className="col-6">
+                                <div className="input-group mb-3">
+                                    <input id="telefono" type="number" className="form-control" aria-label="telefono" placeholder="telefono" aria-describedby="basic-addon1" value={this.state.telefono} onChange={this.changeValue}></input>
+                                </div>
+                                <div className="input-group mb-3">
+                                    <input id="usuario" type="text" className="form-control" aria-label="usuario" placeholder="usuario" aria-describedby="basic-addon1" value={this.state.usuario} onChange={this.changeValue}></input>
+                                </div>
+                                <div className="input-group mb-3">
+                                    <input id="contrasenia" type="password" className="form-control" placeholder="contraseña" aria-label="password" aria-describedby="basic-addon1" value={this.state.contrasenia} onChange={this.changeValue}></input>
+                                </div>
+                                <div className="input-group mb-3">
+                                    <input id="rePassword" type="password" className="form-control" placeholder="confirmar contraseña" aria-label="re-password" aria-describedby="basic-addon1" value={this.state.rePassword} onChange={this.changeValue}></input>
+                                </div>
+                            </div>
+                        </div> 
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>

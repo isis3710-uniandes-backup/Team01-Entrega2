@@ -2,11 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="615427ee-1786-45e4-a31d-7b3b11f32637" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/models.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/monitorias.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/monitorias.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/assets/imgs/desktop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/home/fallo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/tutoring/category.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/tutoring/filter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/tutoring/tutor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/public/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/home/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/login/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/login/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/tutofinder.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/tutofinder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/tutoring/dashboardtutor.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/tutoring/dashboardtutor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/users/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/users/userinfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/imgs/ofMat.png" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/assets/imgs/ofMat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/imgs/usr.png" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/assets/imgs/usr.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/tutoriabrindada.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/tutoriabrindada.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/tutoriarealizada.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/tutoriarealizada.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/userinfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/userinfo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -83,6 +100,11 @@
               <item name="Team01-Entrega2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Team01-Entrega2" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Team01-Entrega2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team01-Entrega2" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -133,12 +155,12 @@
       <workItem from="1569124941232" duration="998000" />
       <workItem from="1569125989272" duration="214000" />
       <workItem from="1569162675619" duration="15665000" />
-      <workItem from="1569190598191" duration="5910000" />
+      <workItem from="1569190598191" duration="6167000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75752000" />
+    <option name="totallyTimeSpent" value="76009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -295,13 +317,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front/build/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -325,13 +340,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/env.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -370,8 +378,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/monitorias.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1151">
-          <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+        <state relative-caret-position="1188">
+          <caret line="105" column="43" lean-forward="true" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
         </state>
       </provider>
     </entry>

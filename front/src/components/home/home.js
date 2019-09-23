@@ -1,25 +1,30 @@
 import React, { Component } from 'react'
 import '../../styles/home.css'
-import ofMat from '../../imgs/ofMat.png'
+import ofMat from '../../assets/imgs/ofMat.png'
+import logo from "../../assets/imgs/logotype2.png";
+import desktop from  '../../assets/imgs/desktop.png'
+import { Col, Row, Button } from 'react-bootstrap';
 
 export default class Home extends Component {
   render() {
     return (
       <div id="home">
-        <div id="banner">
-          <div className="position-relative  p-3 p-md-5 m-md-3 text-left">
-            <div className="col-md-5 p-lg-5 my-5">
-              <h1 className="display-4 font-weight-normal titulo">TutoFinder</h1>
-              <b className="lead font-weight-normal titulo">El tutor que necesitas a un click de distancia</b>
-              <a id="sobreNosotros" className="btn btn-outline-secondary" href="#nosotros">Sobre nosotros</a>
-            </div>
-          </div>
-        </div>
-        <hr></hr>
+        <Row id="banner" >
+          <Col md={6} id="lineamiento" >
+            <strong id="nombrem">TutoFinder</strong>
+            <br></br>
+            <strong id="slogan">Aquí encontrarás los mejores tutores.</strong>
+            <br></br>
+            <Button><strong>EMPECEMOS</strong></Button>
+          </Col>
+          <Col md={6}>
+          <img className="img" id="logo" src={desktop} alt="Imagen 1"></img>
+          </Col>
+        </Row>
         <div id="nosotros" className="row">
           <div className="col-md-12 text-center">
             <h1>Sobre Nosotros</h1>
-            <img className="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Reloj_flat.svg/200px-Reloj_flat.svg.png" alt="Imagen 1" width="140" height="140"></img>
+            <img className="img" src={logo} alt="Imagen 1" width="140" height="140"></img>
           </div>
           <div className="col-md-8 col-md-offset-2">
             <div className="about-text text-center">
