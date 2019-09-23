@@ -28,11 +28,11 @@ const compare = {
 
 
 
-export default class categoria extends Component {
+export default class Categoria extends Component {
 
     state = {
-
-        materias: this.props.value.materias,
+        nombre : 'matematicas',
+        materias: [],
         tutores : []
     }
     underline = {
@@ -58,61 +58,45 @@ export default class categoria extends Component {
     }
 
 
-    fetchTutors = (filters, sortBy, callback) => dispatch => {
-        return axios
-            this.state.tutores
-            .then(res => {
-                let { products } = res.data;
 
-                if (!!filters && filters.length > 0) {
-                    products = products.filter(p =>
-                        filters.find(f => p.availableSizes.find(size => size === f))
-                    );
-                }
-
-                if (!!sortBy) {
-                    products = products.sort(compare[sortBy]);
-                }
-
-                if (!!callback) {
-                    callback();
-                }
-
-                return dispatch({
-                    type: FETCH_PRODUCTS,
-                    payload: products
-                });
-            })
-            .catch(err => {
-                console.log('Could not fetch products. Try again later.');
-            });
-    };
 
 
 
     componentDidMount() {
-        fetch('https://radiant-hollows-88985.herokuapp.com/users/fjgonzalez')
+        fetch('https://radiant-hollows-88985.herokuapp.com/'+ this.state.nombre+ '/subjects/')
             .then(res => res.json())
             .then(json => {
-                    let idsTutores = json[0].tutores;
-                let tempTutor = this.state.tutores;
-                    for (let index = 0; index < idsTutores.length; index++)
-                    {
-                        let monit = idsTutores[index];
-                        fetch('https://radiant-hollows-88985.herokuapp.com/categorias/'+monit)
-                            .then(res => res.json())
-                            .then(json => {
-                                tempTutor.push(json[0]);
-                            })
+
+                let tempTutores = this.state.tutores;
+                let tempMateria = this.state.materias;
+                    for (let index = 0; index < json.length; index++)
+                    {   tempMateria.push(json[index])
+
+                        for (let index2 = 0; index2 < json[index].tutores.length; index++)
+                        {
+                            let monit = json[index].tutores[index2];
+                            fetch('https://radiant-hollows-88985.herokuapp.com/tutors/'+monit)
+                                .then(res => res.json())
+                                .then(json => {
+                                    tempTutores.push(json[0]);
+                                })
+                        }
 
                     }
                     this.setState({
-                        tutores: tempTutor
+                        tutores: tempTutores
+
                     })
+                    this.setState({
+                        materias: tempMateria
+
+                    })
+
 
                 }
             );
     }
+
 
 
 
@@ -122,14 +106,22 @@ export default class categoria extends Component {
         return (
             <div id="dashboard">
                 <Row className="principal">
+
+                    <Col md={3} className="text-center">
+
+                        <strong id="tutores">Filtros</strong>
+                        <div className="scrollbar scrollbar-primary">
+                            {this.state.tutores.map((e,i) => <tutor key={i} value={e}/>)}
+                        </div>
+                    </Col>
                     <Col md={7} className="text-center">
+
                         <strong id="tutores">Tutores</strong>
                         <div className="scrollbar scrollbar-primary">
                             {this.state.tutores.map((e,i) => <tutor key={i} value={e}/>)}
                         </div>
                     </Col>
                 </Row>
-                <this.MyVerticallyCenteredModal show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
             </div>
         )
     }
