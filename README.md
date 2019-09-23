@@ -10,6 +10,7 @@
 * Express
 * React
 * Cuenta en Heroku
+* Cuenta Mongo Atlas
 ```
 
 ### Instalación 🔧
@@ -23,6 +24,11 @@ _Paso 2_
 
 ```
 Abrir una consola cmd en el proyecto. Luego hacer npm install en la carpeta root y en la carpeta front.
+```
+_Paso 3_
+
+```
+Crear un archivo .env con el formato disponible en el archivo env.txt. con las credenciales de la base de datos creadas en Mongo Atlas.
 ```
 
 ## Deployment 📦
@@ -75,10 +81,12 @@ Ingresar el comando heroku open para abrir la página en el browser.
 
 ## Construido con 🛠️
 
-* [ReactJs](https://es.reactjs.org/) - El framework web usado
-* [NPM](https://www.npmjs.com/) - Manejador de dependencias
-* [HEROKU](https://www.heroku.com) - Herramienta Usada para el despliegue de la app
+* [ReactJs](https://es.reactjs.org/) - El framework web usado.
+* [NPM](https://www.npmjs.com/) - Manejador de dependencias.
+* [HEROKU](https://www.heroku.com) - Herramienta Usada para el despliegue de la app.
 * [NodeJs](https://nodejs.org/es/) - Entorno de ejecución
+* [Mongo Atlas](https://www.mongodb.com/cloud/atlas) - Herramienta usada para centralizar la base de datos en la nube.
+* [Mongodb](https://www.mongodb.com/es) - Sistema Manejador de Bases de Datos NOSQL.
 
 ## Autores ✒️
 
