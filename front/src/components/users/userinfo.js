@@ -4,8 +4,10 @@ import '../../styles/userinfo.css';
 import userimage from '../../assets/imgs/usr.png';
 import TutoriaRealizada from './tutoriarealizada';
 
-
+var isDefined =true;
 export default class userinfo extends Component {
+
+     
 
     constructor(props){
         super(props);
@@ -37,16 +39,23 @@ export default class userinfo extends Component {
                 let telf = data.telefono;
                 let correo = data.email;
                 let ced = data.cedula;
-                let idsMonitorias = data.monitoriasRealizadas === undefined ? [] : data.monitoriasRealizadas;
+                let idsMonitorias = data.monitoriasRealizadas
                 let tempMonitorias = this.state.monitoriasRealizadas;
-                for (let index = 0; index < idsMonitorias.length; index++) 
+                
+                if(!(typeof (idsMonitorias) === "undefined"))
                 {
-                    let monit = idsMonitorias[index];
-                    fetch('https://radiant-hollows-88985.herokuapp.com/monitorias/'+monit)
-                    .then(res => res.json())
-                    .then(json => {
-                        tempMonitorias.push(json[0]);
-                    })   
+                    for (let index = 0; index < idsMonitorias.length; index++) 
+                    {
+                        let monit = idsMonitorias[index];
+                        fetch('https://radiant-hollows-88985.herokuapp.com/monitorias/'+monit)
+                        .then(res => res.json())
+                        .then(json => {
+                            tempMonitorias.push(json[0]);
+                        })   
+                    }
+                }
+                else{
+                    isDefined = false;
                 }
                 this.setState({
                     usuario:user, 
@@ -123,7 +132,75 @@ export default class userinfo extends Component {
     };
 
     render() {
-
+        if(isDefined === false && this.state.estado ==="mostrarForm")
+        {
+            return(
+                <div id="contenedor">
+                        <Row>
+                            <Col  lg={3} md={5} sm={5} id ="panelOpciones">
+                            <br></br>
+                                <Nav  id="sidebar">
+                                    <div className="sidebar-header">
+                                        <Image id="userImg" src={this.state.img} roundedCircle></Image>
+                                        <br></br>
+                                        <br></br>
+                                        <h2 id="name" >{this.state.nombre} {this.state.apellido}</h2>
+                                        <h6>@{this.state.usuario}</h6>
+                                    </div>
+                                    
+                                    <ul className="list-unstyled components">
+                                        <li>
+                                            <a onClick={this.mostrarForm}>Ajustes de cuenta</a>
+                                        </li>
+                                        <li>
+                                            <a >Cerrar sesión</a>
+                                        </li>
+                                    </ul> 
+                                </Nav>
+                            </Col>
+                            
+                            <Col lg={8} md={5} sm={5} id="informacion">
+                            <div id="form">  
+                                <h1>Información de tu cuenta</h1>
+                                    <Form>
+                                        <Form.Group>
+                                            <Form.Label>Nombre</Form.Label>
+                                            <Form.Control 
+                                            onChange = {this.handleNombre}
+                                            value ={this.state.nombre} />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Apellidos</Form.Label>
+                                            <Form.Control 
+                                            onChange = {this.handleApellido}
+                                            value ={this.state.apellidos} />
+                                        </Form.Group>
+                                        <Form.Group >
+                                            <Form.Label>Correo</Form.Label>
+                                            <Form.Control 
+                                            onChange = {this.handleEmail}
+                                            value ={this.state.email} />
+                                        </Form.Group>
+                                        <Form.Group >
+                                            <Form.Label>Telefono</Form.Label>
+                                            <Form.Control 
+                                            onChange = {this.handleTelefono}
+                                            value ={this.state.telefono} />
+                                        </Form.Group>
+                                        <Form.Group >
+                                            <Form.Label>Cedula</Form.Label>
+                                            <Form.Control 
+                                            onChange = {this.handleCedula}
+                                            value ={this.state.cedula} />
+                                        </Form.Group>
+                                        <Button id="actualizar" onClick={this.putRequest}>Actualizar</Button>
+                                    </Form>
+                            </div>  
+                            </Col>
+                        </Row>
+                    </div>
+            )
+        }
         if(this.state.estado ==="mostrarForm")
         {
             return (
