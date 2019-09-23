@@ -5,6 +5,7 @@ import UserLogo from "../assets/imgs/usr.png"
 import '../styles/navbar.css'
 import logo from "../assets/imgs/logotype2.png"
 import { Link } from "react-router-dom"
+const url = "https://tutofinder.herokuapp.com";
 
 
 export default class Navbar extends Component {
@@ -33,13 +34,13 @@ export default class Navbar extends Component {
     buscar() {
         let url = "";
         if (this.state.busqueda !== "") {
-            fetch('https://radiant-hollows-88985.herokuapp.com/categories')
+            fetch(url+'/categories')
                 .then(res => res.json())
                 .then(json => {
                     url = json[0].rutaFront;
                 });
             if (url === "") {
-                fetch('https://radiant-hollows-88985.herokuapp.com/categories')
+                fetch(url+'/categories')
                 .then(res => res.json())
                 .then(json => {
                     url = json[0].rutaFront;
@@ -55,7 +56,7 @@ export default class Navbar extends Component {
         this.state.logFunc();
     }
     componentDidMount() {
-        fetch('https://radiant-hollows-88985.herokuapp.com/categories')
+        fetch(url+'/categories')
             .then(res => res.json())
             .then(json => {
                 this.setState({

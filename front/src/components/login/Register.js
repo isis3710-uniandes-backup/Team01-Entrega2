@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
+const url = "https://tutofinder.herokuapp.com";
 
 class Register extends Component {
 
@@ -65,14 +66,14 @@ class Register extends Component {
     signUp() {
         if (this.state.contrasenia === this.state.rePassword) {
             var usr;
-            fetch('/users/' + this.state.usuario)
+            fetch(url+'/users/' + this.state.usuario)
                 .then(res => res.json())
                 .then(data => usr = data[0]);
             console.log(usr);
             if (usr === undefined) {
                 try {
                     if (this.state.esTutor) {
-                        fetch('https://radiant-hollows-88985.herokuapp.com/users/tutors', {
+                        fetch(url+'/users/tutors', {
                             method : 'POST',
                             body :  JSON.stringify({
                                 nombre: this.state.nombre,
@@ -95,7 +96,7 @@ class Register extends Component {
                     }
                     else {
 
-                        fetch('https://radiant-hollows-88985.herokuapp.com/users/students', {
+                        fetch(url+'/users/students', {
                             method: 'POST', // or 'PUT'
                             body: JSON.stringify({
                                 nombre: this.state.nombre,
