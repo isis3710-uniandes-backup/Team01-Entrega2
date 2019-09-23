@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card } from 'react-bootstrap';
 import '../../styles/tutoriabrindada.css';
 import Rating from '@material-ui/lab/Rating';
+
 export default class tutoriabrindada extends Component {
     state = {
         materia: this.props.value.materias,

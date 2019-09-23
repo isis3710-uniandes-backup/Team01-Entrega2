@@ -28,7 +28,7 @@ export default class userinfo extends Component {
     }
 
     componentDidMount() {
-        fetch('https://radiant-hollows-88985.herokuapp.com/users/'+this.state.usuario)
+        fetch('https://tutofinder.herokuapp.com/users/'+this.state.usuario)
             .then(res => res.json())
             .then(json => {
                 let data = json[0];
@@ -47,7 +47,7 @@ export default class userinfo extends Component {
                     for (let index = 0; index < idsMonitorias.length; index++) 
                     {
                         let monit = idsMonitorias[index];
-                        fetch('https://radiant-hollows-88985.herokuapp.com/monitorias/'+monit)
+                        fetch('https://tutofinder.herokuapp.com/monitorias/'+monit)
                         .then(res => res.json())
                         .then(json => {
                             tempMonitorias.push(json[0]);
@@ -73,7 +73,7 @@ export default class userinfo extends Component {
     }
 
     putRequest=()=>{
-        let ruta = "https://radiant-hollows-88985.herokuapp.com/users/students/"+this.state.usuario;
+        let ruta = "https://tutofinder.herokuapp.com/users/students/"+this.state.usuario;
         let metodo = 'PUT';
         console.log(this.state.nombre);
         let json = {

@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import TutoriaBrindada from './tutoriabrindada';
 import Chart from 'chart.js';
+const url = "https://tutofinder.herokuapp.com";
 
 
 export default class dashboardtutor extends Component {
@@ -92,10 +93,10 @@ export default class dashboardtutor extends Component {
 
     }
     modalTutoria = e => {
-        let ruta = `https://radiant-hollows-88985.herokuapp.com/users/${this.state.tutor}/monitorias`;
+        let ruta = `${url}/${this.state.tutor}/monitorias`;
         let metodo = 'POST';
         if(this.state.tituloModal !== "Crear una nueva tutoria."){
-            ruta = "https://radiant-hollows-88985.herokuapp.com/monitorias/"+this.state.idTutoria;
+            ruta = url+"/monitorias/"+this.state.idTutoria;
             metodo = 'PUT';
         }
         console.log(this.state);
@@ -229,7 +230,7 @@ export default class dashboardtutor extends Component {
     
 
     componentDidMount() {
-        fetch(`https://radiant-hollows-88985.herokuapp.com/users/${this.state.tutor}`)
+        fetch(`${url}/${this.state.tutor}`)
             .then(res => res.json())
             .then(json => { 
                 let idsMonitorias = json[0].monitoriasOfrecidas;
@@ -237,7 +238,7 @@ export default class dashboardtutor extends Component {
                 for (let index = 0; index < idsMonitorias.length; index++) 
                 {
                     let monit = idsMonitorias[index];
-                    fetch('https://radiant-hollows-88985.herokuapp.com/monitorias/'+monit)
+                    fetch({url}+"/monitorias/"+monit)
                     .then(res => res.json())
                     .then(json => {
                         tempMonitorias.push(json[0]);
