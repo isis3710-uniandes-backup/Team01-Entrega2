@@ -15,7 +15,7 @@ export default class Home extends Component {
             <br></br>
             <strong id="slogan">Aquí encontrarás los mejores tutores.</strong>
             <br></br>
-            <Button><strong>EMPECEMOS</strong></Button>
+            <Button id="empecemosButton"><strong>EMPECEMOS</strong></Button>
           </Col>
           <Col md={6}>
           <img className="img" id="logo" src={desktop} alt="Imagen 1"></img>
