@@ -56,19 +56,24 @@ _Deploy en Heroku_
 _Paso 1_
 
 ```
-Abrir consola en la carpeta root del proyecto
+Abrir consola en la carpeta root del proyecto.
 ```
 _Paso 2_
 
 ```
-Ingresar el comando heroku create
+Ingresar el comando heroku login e ingresar las credenciales de la cuenta en Heroku.
 ```
 _Paso 3_
 
 ```
-Ingresar el comando git push heroku master
+Ingresar el comando heroku create.
 ```
 _Paso 4_
+
+```
+Ingresar el comando git push heroku master.
+```
+_Paso 5_
 
 ```
 Ingresar el comando heroku ps:scale web=1 para asegurar que hay una instancia para el servidor.
