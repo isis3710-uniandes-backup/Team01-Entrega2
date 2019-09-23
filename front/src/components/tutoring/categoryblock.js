@@ -11,7 +11,7 @@ export default class categoryblock extends Component {
     }
     render() {
         return (
-            <div className="col-4">
+            <div className="col-md-4">
                 <Link className="card categorias text-center" to={{  pathname: '/users/'+this.state.usuario, 
                     state : {
                         user : this.state.usuario

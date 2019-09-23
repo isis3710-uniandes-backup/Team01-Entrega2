@@ -18,9 +18,7 @@ div{
   background-color: #484349;
   padding-top: 10rem;
  }
- #contenedorTitulo{
-  height : 20px !important
- }
+
  #emphasis{
    color: #43efc7;
  }
@@ -42,7 +40,7 @@ div{
 
  }
  #nombrem{
-   font-size: 6.5rem;
+   font-size: 8.6vw;
    color: #43efc7;
  }
  #lineamiento{
@@ -71,6 +69,7 @@ div{
   background-color: #00c99a;
   color : white;
 }
+
 
 
  /* MARKETING CONTENT

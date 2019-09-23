@@ -32,9 +32,6 @@ export default class tutoriabrindada extends Component {
         this.setState({
             horaFinal: horaFinalle
         })
-        console.log(this.state.horaFinal)
-
-
     }
     render() {
         return (
