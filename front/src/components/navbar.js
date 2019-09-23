@@ -114,7 +114,9 @@ export default class Navbar extends Component {
                                                 user: this.state.usuario
                                             }
                                         }}>Soy tutor</Link>
-                                        <a className="dropdown-item" onClick={this.cerrarSesion}>Cerrar sesion</a>
+                                        <Link className="dropdown-item" to={{
+                                            pathname: '/'
+                                        }} onClick={this.cerrarSesion}>Cerrar sesion</Link>
                                     </div>
                                 </div>
                             </li>
