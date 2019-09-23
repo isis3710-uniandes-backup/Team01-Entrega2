@@ -24,6 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'front/build')));
 
+// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/front/build/index.html'))
+})
+
 app.use('/categories', categoriesRouter);
 app.use('/monitorias', monitoriasRouter);
 app.use('/users', usersRouter);

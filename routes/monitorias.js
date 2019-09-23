@@ -17,6 +17,8 @@ let conn =  mongoClient.connect(uri, {
 
 //
 
+var Comentario = require('mongoose').model('Comentario');
+
 /**
  * Modifica una monitoria
  */
@@ -29,6 +31,38 @@ function putMonitoria(req, res){
             if (err !=null) throw err;
             res.send(data);
         });
+    });
+}
+
+/**
+ * Modifica una monitoria
+ */
+function putComentarioInMonitoria(req, res) {
+    let identificador = req.params.idMonitoria;
+    let comentario = new Comentario(req.body);
+    let id = new ObjectId(identificador);
+    let comentarios = [];
+    comentario.validate(err => {
+        if (err != null) res.send(err.message);
+        else {
+            conn.then(client => {
+                client.db(databaseName).collection("monitorias").find({_id: id})
+                    .toArray((err, data) => {
+                        if (err) throw err;
+                        else if(data.length == 0) res.send("No existe la monitoria con el id: " + identificador);
+                        else{
+                            data[0].comentarios.forEach(comentario => {
+                                comentarios.push(comentario);
+                            });
+                            comentarios.push(comentario);
+                            client.db(databaseName).collection("monitorias").updateOne({_id: id}, {$set: {comentarios: comentarios}}, (err, data) => {
+                                if (err != null) throw err;
+                                res.send(data);
+                            });
+                        }
+                    });
+            });
+        }
     });
 }
 
@@ -61,12 +95,15 @@ function getMonitoriasById(req, res){
 }
 
 
+
+
 //------------------------ROUTES------------------------------------------
 
 router.get('/',(req,res) => getMonitorias(req,res));
 router.get('/:idMonitoria',(req,res) => getMonitoriasById(req,res));
 
 router.put('/:idMonitoria',(req,res) => putMonitoria(req,res));
+router.put('/:idMonitoria/users',(req,res) => putComentarioInMonitoria(req,res));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

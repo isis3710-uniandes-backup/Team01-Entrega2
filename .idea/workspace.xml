@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="615427ee-1786-45e4-a31d-7b3b11f32637" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/ability.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/models.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/monitorias.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/monitorias.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,26 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/www">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -69,18 +48,18 @@
         <option value="$PROJECT_DIR$/models/Categoria.js" />
         <option value="$PROJECT_DIR$/routes/categories.js" />
         <option value="$PROJECT_DIR$/front/src/index.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/front/src/components/navbar.js" />
         <option value="$PROJECT_DIR$/front/src/ability.js" />
-        <option value="$PROJECT_DIR$/models/models.js" />
-        <option value="$PROJECT_DIR$/routes/monitorias.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/front/package.json" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/routes/monitorias.js" />
+        <option value="$PROJECT_DIR$/models/models.js" />
       </list>
     </option>
   </component>
@@ -103,16 +82,6 @@
             <path>
               <item name="Team01-Entrega2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Team01-Entrega2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team01-Entrega2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team01-Entrega2" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team01-Entrega2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team01-Entrega2" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -164,16 +133,15 @@
       <workItem from="1569124941232" duration="998000" />
       <workItem from="1569125989272" duration="214000" />
       <workItem from="1569162675619" duration="15665000" />
-      <workItem from="1569190598191" duration="497000" />
+      <workItem from="1569190598191" duration="5910000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70339000" />
+    <option name="totallyTimeSpent" value="75752000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14077991" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -303,13 +271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-172">
-          <caret line="93" column="14" lean-forward="true" selection-start-line="93" selection-start-column="14" selection-end-line="93" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/categories.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-36">
@@ -318,13 +279,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Procfile.txt" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front/src/ability.js" />
     <entry file="file://$PROJECT_DIR$/front/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -341,24 +295,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/monitorias.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/models.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -380,10 +320,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        <state relative-caret-position="-119">
+          <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -394,10 +354,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/models/models.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+        <state relative-caret-position="-238">
+          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2992">
+          <caret line="34" selection-start-line="34" selection-end-line="36" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/monitorias.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1151">
+          <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
         </state>
       </provider>
     </entry>
