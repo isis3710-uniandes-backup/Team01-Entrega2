@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const url = "https://tutofinder.herokuapp.com";
 
 class LogIn extends Component {
 
@@ -13,7 +14,7 @@ class LogIn extends Component {
     }
     logIn() {
         if (this.state.usuario !== "" && this.state.password !== "") {
-            fetch('https://radiant-hollows-88985.herokuapp.com/users/' + this.state.usuario)
+            fetch(url+'/users/' + this.state.usuario)
                 .then(res => res.json())
                 .then(json => {
                     console.log(json);
