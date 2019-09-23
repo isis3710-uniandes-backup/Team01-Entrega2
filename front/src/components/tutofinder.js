@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from "react-router-dom";
 import DashBoardTutor from './tutoring/dashboardtutor';
-import Navbar from './navbar'
-import Home from './home/home'
+import Navbar from './navbar';
+import Home from './home/home';
+import Fallo from './home/fallo';
 import UserInfo from './users/userinfo';
 
 export default class tutofinder extends Component {
@@ -30,7 +31,7 @@ export default class tutofinder extends Component {
                             { this.state.logueado ?  <div>
                             <Route exact path="/tutor/:username" component={DashBoardTutor} />
                             <Route exact path="/users/:user" component={UserInfo} />
-                            </div> : <Route path="" component={Home}/> }
+                            </div> : <Route path="" component={Fallo}/> }
                  
                         </div>
                 </BrowserRouter>
