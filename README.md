@@ -31,18 +31,18 @@ _Deploy en local_
 _Paso 1_
 
 ```
-Hacer npm start en la carpeta root
+Abrir una consola en la carpeta root del proyecto y hacer npm start.
 ```
 
 _Paso 2_
 
 ```
-Abrir otra consola y hacer npm start en la carpeta front.
+Abrir otra consola cmd en la carpeta front y hacer npm start.
 ```
 _Paso 3_
 
 ```
-En el navegador ingresar la url localhost:5000
+En el navegador ingresar la url http://localhost:3000/
 ```
 
 _Deploy en Heroku_
@@ -70,7 +70,7 @@ Ingresar el comando heroku ps:scale web=1 para asegurar que hay una instancia pa
 _Paso 5_
 
 ```
-Ingresar el comando heroku open para abrir la página.
+Ingresar el comando heroku open para abrir la página en el browser.
 ```
 
 ## Construido con 🛠️
