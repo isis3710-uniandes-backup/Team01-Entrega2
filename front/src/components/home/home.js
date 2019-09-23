@@ -4,8 +4,22 @@ import ofMat from '../../assets/imgs/ofMat.png'
 import logo from "../../assets/imgs/logotype2.png";
 import desktop from  '../../assets/imgs/desktop.png'
 import { Col, Row, Button } from 'react-bootstrap';
+import CategoryBlock from '../tutoring/categoryblock';
 
 export default class Home extends Component {
+  state ={
+    categories : []
+  }
+  componentDidMount(){
+    fetch(`https://radiant-hollows-88985.herokuapp.com/categories/`)
+    .then(res => res.json())
+    .then(json => {
+      this.setState({
+        categories : json
+      })
+     }
+    );
+  }
   render() {
     return (
       <div id="home">
@@ -20,6 +34,9 @@ export default class Home extends Component {
           <Col md={6}>
           <img className="img" id="logo" src={desktop} alt="Imagen 1"></img>
           </Col>
+        </Row>
+        <Row id="categories">
+          {this.state.categories.map((e,i) => <Col md={4}><CategoryBlock key={i} value={e}/></Col>)}
         </Row>
         <div id="nosotros" className="row">
           <div className="col-md-12 text-center">
