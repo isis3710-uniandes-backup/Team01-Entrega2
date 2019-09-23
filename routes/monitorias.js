@@ -34,7 +34,7 @@ function putMonitoria(req, res){
     });
 }
 
-/**
+/*
  * Modifica una monitoria
  */
 function putComentarioInMonitoria(req, res) {
