@@ -4,6 +4,15 @@
 * [TutoFinder](https://www.youtube.com/watch?v=vEP_bc-UKGo) - Video
 * [Página Web](https://tutofinder.herokuapp.com/) - Link de la página web
 
+### Descripción
+*Es un proyecto que surgió en el año 2019 como respuesta a la necesidad de apoyo académico a estudiantes en su proceso de aprendizaje. Entendemos las dificultades que se pueden presentar al buscar tutores para determinadas materias, como respuesta a esto creamos este proyecto con el cual buscamos facilitar el proceso de búsqueda de monitores.
+
+*Te ofrecemos una gran cantidad de materias y monitores. A diferencia de otras empresas nosotros te ofrecemos tutorias de las materias que necesites, incluso de las especificas de la carrera.
+
+*Sabemos que tienes un horario apretado por eso te ofrecemos la opción de agendar tus monitorias con un tutor a una hora de tu conveniencia.
+
+*Nuestros tutores cuentan con calificaciones y comentarios para que puedas guiarte al momento de buscar una monitoria.
+
 ### Pre-requisitos 📋
 ```
 * Tener Instalado Node.js
