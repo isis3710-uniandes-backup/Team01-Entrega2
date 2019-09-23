@@ -12,8 +12,9 @@ div{
   height: auto;
 }
 #banner {
-  min-height: 80vh;
-  padding : 4rem 4rem;
+  padding-top: 1rem;
+  min-height: 86vh;
+  padding : 5rem 5rem;
   background-color: #484349;
 
  }
@@ -37,6 +38,17 @@ div{
    color:white;
    border-color:white;
  }
+ #empecemosButton{
+   border-color: #484349;
+   background-color: #43efc7;
+   color: #484349;
+ }
+ #empecemosButton:hover{
+  border-color: #484349;
+  background-color: #00c99a;
+  color : white;
+}
+
 
  /* MARKETING CONTENT
 -------------------------------------------------- */
