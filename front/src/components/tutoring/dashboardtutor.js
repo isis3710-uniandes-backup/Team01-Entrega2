@@ -230,7 +230,7 @@ export default class dashboardtutor extends Component {
     
 
     componentDidMount() {
-        fetch(`${url}/${this.state.tutor}`)
+        fetch(`${url}/users/${this.state.tutor}`)
             .then(res => res.json())
             .then(json => { 
                 let idsMonitorias = json[0].monitoriasOfrecidas;
@@ -238,13 +238,20 @@ export default class dashboardtutor extends Component {
                 for (let index = 0; index < idsMonitorias.length; index++) 
                 {
                     let monit = idsMonitorias[index];
-                    fetch({url}+"/monitorias/"+monit)
+                    fetch(url+"/monitorias/"+monit)
                     .then(res => res.json())
                     .then(json => {
-                        tempMonitorias.push(json[0]);
+                        if(json.length >= 1)
+                        {
+                            tempMonitorias.push(json[0]);
+                        }
                     })
                     
                 }
+                console.log(tempMonitorias)
+                this.setState({
+                    monitoriasBrindadas : tempMonitorias
+                })
             }
             );
             this.cargarGraficos();
