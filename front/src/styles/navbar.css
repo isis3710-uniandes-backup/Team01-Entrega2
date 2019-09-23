@@ -22,3 +22,6 @@ box-shadow: none;
 div{
     font-family: 'Ubuntu', sans-serif;
   }
+  .navbar{
+    border-bottom: 2px inset #43efc7;
+  }

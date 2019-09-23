@@ -7,10 +7,28 @@ div{
     flex: 1;
   
 }
+#logo{
+  max-width : 100%;
+  height: auto;
+}
 #banner {
-  background-image: url("https://www.laregioninternacional.com/asset/zoomcrop,1140,580,center,center/media/lri/images/2018/02/22/2018022209483277296.jpg");
-  background-size: cover;
-  background-color: #cccccc;
+  min-height: 80vh;
+  padding : 4rem 4rem;
+  background-color: #484349;
+
+ }
+ #nombrem{
+   font-size: 6.5rem;
+   color: #43efc7;
+ }
+ #lineamiento{
+  padding-left: 4rem;
+  padding-right : 4rem;
+ }
+ #slogan{
+   color : #fdfffc;
+   font-size: 1.7rem;
+   padding-left: .4rem;
  }
  .titulo{
   color:white;
