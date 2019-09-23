@@ -6,8 +6,8 @@ import { Link } from "react-router-dom"
 
 export default class categoryblock extends Component {
     state = {
-        nombre :this.props.value.name,
-        imagen : this.props.value.imagen
+        nombre :this.props.value.nombre,
+        imagen : this.props.imagenes[0]
     }
     render() {
         return (
