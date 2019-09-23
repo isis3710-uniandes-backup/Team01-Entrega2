@@ -13,9 +13,32 @@ div{
 }
 #banner {
   padding-top: 1rem;
-  min-height: 86vh;
-  padding : 5rem 5rem;
+  min-height: 90vh;
+  padding : 3rem 3rem;
   background-color: #484349;
+  padding-top: 10rem;
+ }
+ #contenedorTitulo{
+  height : 20px !important
+ }
+ #emphasis{
+   color: #43efc7;
+ }
+ #categories{
+  min-height: 99vh;
+  padding : 4rem 4rem;
+  background-color: #484349;
+  border-style: solid;
+  border-color: white;
+ }
+ #titleCat{
+   font-weight: bold;
+   text-align: center;
+   font-size: 2em;
+   color: #fdfffc
+ }
+ html {
+  scroll-behavior: smooth;
 
  }
  #nombrem{
