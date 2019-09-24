@@ -10,16 +10,18 @@ export default class principalPanel extends Component {
     state = {
         nombre: (this.props.location.state !== undefined ? this.props.location.state.category : this.props.location.pathname.replace("/categories/","")),
         categories: this.props.location.state.categories,
-        idCategoria : this.props.localtion.state.idCategory,
-        tutorias : []
+        idCategoria : this.props.location.state.idCategory,
+        tutorias : [],
+        all : []
     }
     componentDidMount(){
         fetch( `${url}/monitorias`)
         .then(res => res.json())
         .then(json =>
             this.setState({
-                tutorias : json
+                all : json
             }));
+        this.cargarTutorias();
     }
     cargarTutorias()
     {
@@ -32,8 +34,10 @@ export default class principalPanel extends Component {
                 fetch(`${url}/users/${element.usuario}`)
                 .then(res => res.json())
                 .then(json => {
+                    console.log(json);
                     let x = json.monitoriasOfrecidas;
-                    for (let index = 0; index < x.length; index++) {
+                    for (let index = 0; index < x.length; index++) 
+                    {
                         const elemento = x[index];
                         if(elemento.categoria === this.state.nombre)
                         {
@@ -44,6 +48,9 @@ export default class principalPanel extends Component {
             });
         }
      );
+     this.setState({
+         tutorias : temp
+     })
     }
 
     refresh = (i, nombre) => {
@@ -77,12 +84,10 @@ export default class principalPanel extends Component {
                         </Col>
                         <Col className="tutoriasCategoria" md={9}>
                             <Tab.Pane eventKey="todos">
-                                {this.state.tutorias.map((e,i)=> <Tutoria/>)}
+                                {this.state.all.map((e,i)=> <Tutoria/>)}
                             </Tab.Pane>
                             <Tab.Content>
-                                {this.state.categories.map((e, i) => <Tab.Pane key={i} eventKey={i}>
-                                    <h1>Lista</h1>
-                                </Tab.Pane>)}
+                                {this.state.tutorias.map((e, i) => <Tutoria key={i} value={e}/>)}
                             </Tab.Content>
                         </Col>
                     </Row>

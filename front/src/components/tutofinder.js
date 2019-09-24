@@ -29,7 +29,7 @@ export default class tutofinder extends Component {
                         <div>
                             <Navbar logFunc={this.loguear}/>
                             <Route exact path="/" component={Home} />
-                            { !this.state.logueado ?  <div>
+                            { this.state.logueado ?  <div>
                             <Route exact path="/tutor/:username" component={DashBoardTutor} />
                             <Route exact path="/users/:user" component={UserInfo} />
                             <Route path="/categories/:category" component={principalPanel} />
