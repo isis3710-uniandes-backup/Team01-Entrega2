@@ -99,8 +99,6 @@ export default class dashboardtutor extends Component {
             ruta = url+"/monitorias/"+this.state.idTutoria;
             metodo = 'PUT';
         }
-        console.log(this.state);
-        e.preventDefault();
         let json = {
             "tipo": this.state.grupal ? "Grupal" : "Individual",
             "costo": this.state.costo.replace("$", ""),
@@ -117,7 +115,8 @@ export default class dashboardtutor extends Component {
             modalShow : false,
             monitoriasBrindadas : monito
         })
-
+        console.log(ruta);
+        console.log(json);
         fetch(ruta,
             {
                 method: metodo,
@@ -132,7 +131,6 @@ export default class dashboardtutor extends Component {
             .catch(error =>
                 console.log("Error" + error)
             );
-            this.refreshTutorias();
     }
 
     cargarGraficos() {
