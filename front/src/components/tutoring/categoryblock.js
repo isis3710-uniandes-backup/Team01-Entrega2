@@ -8,7 +8,8 @@ export default class categoryblock extends Component {
     state = {
         nombre :this.props.value.nombre,
         imagen : this.props.value.rutaFront,
-        brothers : this.props.brothers
+        brothers : this.props.brothers,
+        id : this.props.value._id
     }
     render() {
         return (
@@ -16,7 +17,8 @@ export default class categoryblock extends Component {
                 <Link className="card categorias text-center" to={{  pathname: '/categories/'+this.state.nombre, 
                     state : {
                         category : this.state.nombre,
-                        categories : this.state.brothers
+                        categories : this.state.brothers,
+                        idCategory : this.state.id
                     }}}>
                 <Card.Img src={this.state.imagen} alt="Card image" />
                     <Card.ImgOverlay className="categoriaBody">
