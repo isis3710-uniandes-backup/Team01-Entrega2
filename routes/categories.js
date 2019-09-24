@@ -130,7 +130,7 @@ function getTutorsOfCategory(req, res){
                 let tutors = [];
                 data.forEach(category => {
                     category.tutores.forEach(tutor => {
-                        courses.push(tutor);
+                        tutors.push(tutor);
                     });
                 });
                 res.send(tutors);
