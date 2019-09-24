@@ -20,12 +20,12 @@ div{
  }
 
  #emphasis{
-   color: #43efc7;
+   color: #115244;
  }
  #categories{
   min-height: 99vh;
   padding : 4rem 4rem;
-  background-color: #484349;
+  background-color: #ffffff;
   border-style: solid;
   border-color: white;
  }
@@ -33,7 +33,7 @@ div{
    font-weight: bold;
    text-align: center;
    font-size: 2em;
-   color: #fdfffc
+   color: #484349
  }
  html {
   scroll-behavior: smooth;

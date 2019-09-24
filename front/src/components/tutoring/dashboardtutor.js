@@ -44,7 +44,8 @@ export default class dashboardtutor extends Component {
 
     setModalShow = () => {
         this.setState({
-            modalShow: !this.state.modalShow
+            modalShow: !this.state.modalShow,
+            tituloModal : "Crear una nueva tutoria."
         })
     };
     setSelectedDate = date => {
@@ -87,13 +88,14 @@ export default class dashboardtutor extends Component {
         e.preventDefault();
         this.setState({
             idTutoria: id,
-            tituloModal: "Editar"
+            tituloModal: "Editar",
+            modalShow: !this.state.modalShow
+
         });
-        this.setModalShow();
 
     }
     modalTutoria = e => {
-        let ruta = `${url}/${this.state.tutor}/monitorias`;
+        let ruta = `${url}/users/${this.state.tutor}/monitorias`;
         let metodo = 'POST';
         if(this.state.tituloModal !== "Crear una nueva tutoria."){
             ruta = url+"/monitorias/"+this.state.idTutoria;
@@ -102,7 +104,7 @@ export default class dashboardtutor extends Component {
         let json = {
             "tipo": this.state.grupal ? "Grupal" : "Individual",
             "costo": this.state.costo.replace("$", ""),
-            "materias": [this.state.course],
+            "materias": this.state.course,
             "direccion": this.state.selectedAddress,
             "fecha": JSON.stringify(this.state.selectedDate),
             "duracion": 2,
@@ -115,8 +117,6 @@ export default class dashboardtutor extends Component {
             modalShow : false,
             monitoriasBrindadas : monito
         })
-        console.log(ruta);
-        console.log(json);
         fetch(ruta,
             {
                 method: metodo,
@@ -414,7 +414,7 @@ export default class dashboardtutor extends Component {
                     <Col md={7} className="text-center justify-content-center">
                         <strong id="mistutorias">Mis tutorias</strong>
                         <div className="scrollbar scrollbar-primary">
-                            {this.state.monitoriasBrindadas.map((e,i) => <TutoriaBrindada onClick={this.setActualIdTutoria} key={i} value={e}/>)}
+                            {this.state.monitoriasBrindadas.map((e,i) => <TutoriaBrindada onClick={ev => this.setActualIdTutoria(ev,e._id)} key={i} value={e}/>)}
                         </div>
                     </Col>
                 </Row>

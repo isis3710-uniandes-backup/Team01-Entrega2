@@ -1,0 +1,15 @@
+.nav-link-panel, .nav-link-panel-actual {
+    color: black !important;
+    transition: all 0.3s;
+}
+#principalPanel{
+    padding: 2rem 2rem ;
+}
+.nav-link-panel-actual, .nav-link-panel:hover{
+    border-left: 1.5px;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 0;
+    border-color : #43efc7;
+    border-style: solid;
+}
