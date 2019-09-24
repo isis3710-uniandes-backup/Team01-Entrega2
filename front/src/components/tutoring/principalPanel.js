@@ -24,10 +24,10 @@ export default class principalPanel extends Component {
     cargarTutorias()
     {
         let temp = this.state.tutorias;
-        fetch( `${url}/monitorias/${this.state.idCategoria}`)
+        fetch( `${url}/categories/${this.state.idCategoria}/tutors`)
         .then(res => res.json())
         .then(json => {
-            let tutores = json.tutores;
+            let tutores = json;
             tutores.forEach(element => {
                 fetch(`${url}/users/${element.usuario}`)
                 .then(res => res.json())
