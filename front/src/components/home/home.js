@@ -38,7 +38,7 @@ export default class Home extends Component {
           <Col md={12} id="contenedorTitulo">
             <h1 id="titleCat">Selecciona la <strong id="emphasis">categoría</strong> que necesitas...</h1>
           </Col>
-          {this.state.categories.map((e, i) => <CategoryBlock key={i} value={e} />)}
+          {this.state.categories.map((e, i) =>  <CategoryBlock key={i} value={e}  brothers={this.state.categories} />)}
         </Row>
       </div>
     )
