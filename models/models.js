@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var ObjectId = require('mongodb').ObjectId;
 
 var monitoriaSchema = new mongoose.Schema({
     descripcion: {type: String, required: true},
@@ -10,7 +11,8 @@ var monitoriaSchema = new mongoose.Schema({
     costo: {type: Number, required: true},
     calificacionServicio: {type: Number, default: 0},
     tipo: {type: String, enum: ["Individual", "Grupal"], required: true},
-    finalizada: {type: Boolean, default: false}
+    finalizada: {type: Boolean, default: false},
+    categoria: {type: ObjectId}
 });
 
 var estudianteSchema = new mongoose.Schema({
@@ -40,7 +42,7 @@ var categoriaSchema = new mongoose.Schema({
     nombre: {type: String, index: true, unique: true, required: true},
     descripcion: String,
     tutores: {type: [String], default: []},
-    rutaFront: {type: String, default: "https://radiant-hollows-88985.herokuapp.com/"}
+    rutaFront: {type: String, default: "https://tutofinder.herokuapp.com/"}
 });
 
 module.exports = mongoose.model('Tutor', tutorSchema);

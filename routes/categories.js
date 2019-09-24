@@ -59,7 +59,7 @@ function putCategory(req, res) {
 /**
  * Put a tutor in a Subject
  */
-function putTutorInCategory(req, res){
+function    putTutorInCategory(req, res){
     let idCategory = req.params.idCategory
     let tutor = req.params.user;
 

@@ -87,28 +87,36 @@ function postStudent(req, res){
 function postMonitoria(req, res) {
     let monitoria = new Monitoria(req.body);
     let tutor = req.params.user;
+    let idCategory = req.params.idCategory
+    let id = new ObjectId(idCategory);
     let monitorias = [];
     monitoria.validate(err => {
         if (err != null) res.send(err.message);
         else {
             conn.then(client => {
-                    client.db(databaseName).collection("monitorias").insertOne(monitoria, (err, dataMonitorias) => {
-                        if (err != null) throw err;
-                        else {
-                            client.db(databaseName).collection("tutors").find({usuario: tutor}).toArray((err, dataTutors) => {
-                                if (dataTutors.length == 0) res.send("No existe el tutor con el usuario: " + tutor);
-                                else {
-                                    dataTutors[0].monitoriasOfrecidas.forEach(monitoria => {
-                                        monitorias.push(monitoria);
-                                    });
-                                    monitorias.push(dataMonitorias.ops[0]._id);
-                                    client.db(databaseName).collection("tutors").updateOne({usuario: tutor}, {$set: {monitoriasOfrecidas: monitorias}}, (err, data) => {
-                                        res.send(dataMonitorias);
-                                    });
-                                }
-                            });
-                        }
-                    });
+                client.db(databaseName).collection("tutors").find({usuario: tutor}).toArray((err, dataTutors) => {
+                    if (dataTutors.length == 0) res.send("No existe el tutor con el usuario: " + tutor);
+                    else {
+                        client.db(databaseName).collection("categories").find({_id: id}).toArray((err, dataCategories) => {
+                            if (dataCategories.length == 0) res.send("No existe la categoria con id: " + idCategory);
+                            else {
+                                monitoria.categoria = id;
+                                dataTutors[0].monitoriasOfrecidas.forEach(monitoria => {
+                                    monitorias.push(monitoria);
+                                });
+                                client.db(databaseName).collection("monitorias").insertOne(monitoria, (err, dataMonitorias) => {
+                                    if (err != null) throw err;
+                                    else {
+                                        monitorias.push(dataMonitorias.ops[0]._id);
+                                        client.db(databaseName).collection("tutors").updateOne({usuario: tutor}, {$set: {monitoriasOfrecidas: monitorias}}, (err, data) => {
+                                            res.send(dataMonitorias);
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             });
         }
     });
@@ -157,7 +165,7 @@ function putStudentInMonitoria(req, res){
                 else {
                     client.db(databaseName).collection("monitorias").find({_id: id}).toArray((err, dataMonitoria) => {
                         if (dataMonitoria.length == 0) res.send("No existe la monitoria con el id: " + idMonitoria);
-                        else if(dataMonitoria.length != 0 && dataMonitoria[0].cuposRestantes == 0) res.send("No hay cupa para la monitoria con id: " + idMonitoria);
+                        else if(dataMonitoria.length != 0 && dataMonitoria[0].cuposRestantes == 0) res.send("No hay cupo para la monitoria con id: " + idMonitoria);
                         else {
                             dataStudent[0].monitoriasRealizadas.forEach(idMonitoria => {
                                 monitorias.push(idMonitoria);
@@ -212,7 +220,7 @@ function getStudents(req, res){
  * Get the User by usuario.
  */
 function getUsersByUsuario(req, res){
-  let usuario = req.params.user
+  let usuario = req.params.user;
   conn.then(client => {
     client.db(databaseName).collection("tutors").find({"usuario": usuario})
         .toArray((err,data)=> {
@@ -234,7 +242,7 @@ function getUsersByUsuario(req, res){
 }
 
 //------------------------ROUTES------------------------------------------
-router.post('/:user/monitorias', cors(), (req,res) => postMonitoria(req,res));
+router.post('/:user/categories/:idCategory/monitorias', cors(), (req,res) => postMonitoria(req,res));
 router.post('/tutors',(req,res) => postTutor(req, res));
 router.post('/students',(req,res) => postStudent(req, res));
 
