@@ -25,7 +25,7 @@ function putMonitoria(req, res){
     let dataPut = req.body
     let id = new ObjectId(identificador);
     conn.then(client => {
-        client.db(databaseName).collection("monitoria").updateOne({_id: id}, {$set: dataPut}, dataPut, (err, data) => {
+        client.db(databaseName).collection("monitorias").updateOne({_id: id}, {$set: dataPut}, dataPut, (err, data) => {
             if (err !=null) throw err;
             res.send(data);
         });
