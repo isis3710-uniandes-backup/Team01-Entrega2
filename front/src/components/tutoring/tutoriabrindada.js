@@ -23,7 +23,6 @@ export default class tutoriabrindada extends Component {
     componentDidMount() {
         let init = this.state.fecha.split("T")[1].split(".")[0];
         let horaFina = parseInt(init.split(":")[0]);
-        console.log(horaFina);
         let minutos = init.split(":")[1];
         let segundos = "00";
         horaFina += this.state.duracion;

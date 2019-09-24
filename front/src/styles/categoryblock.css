@@ -2,6 +2,8 @@
     padding: 0;
     transition: all .8s;
     margin-top: 1px;
+    height: auto;
+    width: 100%;
 }
 .categorias:hover{
     box-shadow:  0 3px 3px #5b5e57;
@@ -9,4 +11,7 @@
 }
 #title{
     color: white;
+}
+.card-img{
+    height : 11rem;
 }

@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import '../../styles/home.css'
-import ofMat from '../../assets/imgs/ofMat.png'
-import logo from "../../assets/imgs/logotype2.png";
 import desktop from '../../assets/imgs/desktop.png'
 import { Col, Row, Button } from 'react-bootstrap';
 import CategoryBlock from '../tutoring/categoryblock';
 const url = "Https://tutofinder.herokuapp.com";
 export default class Home extends Component {
   state = {
-    categories: [],
-    imagenes : ["https://concepto.de/wp-content/uploads/2013/08/matematicas-e1551990337130.jpg"]
+    categories: []
   
   }
   componentDidMount() {
@@ -41,7 +38,7 @@ export default class Home extends Component {
           <Col md={12} id="contenedorTitulo">
             <h1 id="titleCat">Selecciona la <strong id="emphasis">categoría</strong> que necesitas...</h1>
           </Col>
-          {this.state.categories.map((e, i) => <CategoryBlock key={i} value={e} imagenes={this.state.imagenes} />)}
+          {this.state.categories.map((e, i) => <CategoryBlock key={i} value={e} />)}
         </Row>
       </div>
     )

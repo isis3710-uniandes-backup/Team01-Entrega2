@@ -7,14 +7,14 @@ import { Link } from "react-router-dom"
 export default class categoryblock extends Component {
     state = {
         nombre :this.props.value.nombre,
-        imagen : this.props.imagenes[0]
+        imagen : this.props.value.rutaFront
     }
     render() {
         return (
             <div className="col-md-4">
-                <Link className="card categorias text-center" to={{  pathname: '/users/'+this.state.usuario, 
+                <Link className="card categorias text-center" to={{  pathname: '/categories/'+this.state.nombre, 
                     state : {
-                        user : this.state.usuario
+                        category : this.state.nombre
                     }}}>
                 <Card.Img src={this.state.imagen} alt="Card image" />
                     <Card.ImgOverlay className="categoriaBody">

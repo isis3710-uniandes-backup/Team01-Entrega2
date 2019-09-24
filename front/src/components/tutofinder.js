@@ -5,6 +5,7 @@ import Navbar from './navbar';
 import Home from './home/home';
 import Fallo from './home/fallo';
 import UserInfo from './users/userinfo';
+import principalPanel from './tutoring/principalPanel';
 
 export default class tutofinder extends Component {
     constructor(props) {
@@ -31,7 +32,8 @@ export default class tutofinder extends Component {
                             { this.state.logueado ?  <div>
                             <Route exact path="/tutor/:username" component={DashBoardTutor} />
                             <Route exact path="/users/:user" component={UserInfo} />
-                            </div> : <Route path="" component={Fallo}/> }
+                            <Route path="/categories/:category" component={principalPanel} />
+                            </div> : <Fallo/> }
                  
                         </div>
                 </BrowserRouter>
