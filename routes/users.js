@@ -88,33 +88,27 @@ function postMonitoria(req, res) {
     let monitoria = new Monitoria(req.body);
     let tutor = req.params.user;
     let monitorias = [];
-    let id = new ObjectId(monitoria.materias);
     monitoria.validate(err => {
         if (err != null) res.send(err.message);
         else {
             conn.then(client => {
-                client.db(databaseName).collection("subjects").find({_id: id}).toArray((err, dataSubjects) => {
-                    if (dataSubjects.length == 0) res.send("No existe la materia con el id: " + monitoria.materias);
-                    else {
-                        client.db(databaseName).collection("monitorias").insertOne(monitoria, (err, dataMonitorias) => {
-                            if (err != null) throw err;
-                            else {
-                                client.db(databaseName).collection("tutors").find({usuario: tutor}).toArray((err, dataTutors) => {
-                                    if (dataTutors.length == 0) res.send("No existe el tutor con el usuario: " + tutor);
-                                    else {
-                                        dataTutors[0].monitoriasOfrecidas.forEach(monitoria => {
-                                            monitorias.push(monitoria);
-                                        });
-                                        monitorias.push(dataMonitorias.ops[0]._id);
-                                        client.db(databaseName).collection("tutors").updateOne({usuario: tutor}, {$set: {monitoriasOfrecidas: monitorias}}, (err, data) => {
-                                            res.send(dataMonitorias);
-                                        });
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
+                    client.db(databaseName).collection("monitorias").insertOne(monitoria, (err, dataMonitorias) => {
+                        if (err != null) throw err;
+                        else {
+                            client.db(databaseName).collection("tutors").find({usuario: tutor}).toArray((err, dataTutors) => {
+                                if (dataTutors.length == 0) res.send("No existe el tutor con el usuario: " + tutor);
+                                else {
+                                    dataTutors[0].monitoriasOfrecidas.forEach(monitoria => {
+                                        monitorias.push(monitoria);
+                                    });
+                                    monitorias.push(dataMonitorias.ops[0]._id);
+                                    client.db(databaseName).collection("tutors").updateOne({usuario: tutor}, {$set: {monitoriasOfrecidas: monitorias}}, (err, data) => {
+                                        res.send(dataMonitorias);
+                                    });
+                                }
+                            });
+                        }
+                    });
             });
         }
     });
