@@ -4,7 +4,8 @@ export default class fallo extends Component {
     render() {
         return (
             <div>
-                <p>RUTA NO PERMITIDA</p>
+                {this.props.value }
+                <p>RUTA NO PERMITIDA, Inicie sesion.</p>
             </div>
         )
     }

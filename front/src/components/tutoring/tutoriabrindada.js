@@ -12,14 +12,13 @@ export default class tutoriabrindada extends Component {
         horaFinal: "",
         costo: this.props.value.costo,
         cupos : this.props.value.cuposRestantes,
-        id : this.props.value._id
+        id : this.props.value._id,
+        newInfo : this.props.pasarInfo
     }
 
     updateTutoria = e => {
         this.props.onClick(e, this.state.id);
     }
-    
-
     componentDidMount() {
         let init = this.state.fecha.split("T")[1].split(".")[0];
         let horaFina = parseInt(init.split(":")[0]);
