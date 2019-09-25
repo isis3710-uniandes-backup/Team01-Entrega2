@@ -12,15 +12,8 @@ export default class principalPanel extends Component {
         categories: this.props.location.state.categories,
         idCategoria : this.props.location.state.idCategory,
         tutorias : [],
-        all : []
     }
     componentDidMount(){
-        fetch( `${url}/monitorias`)
-        .then(res => res.json())
-        .then(json =>
-            this.setState({
-                all : json
-            }));
         this.cargarTutorias();
     }
     cargarTutorias()
@@ -34,7 +27,6 @@ export default class principalPanel extends Component {
                 fetch(`${url}/users/${element.usuario}`)
                 .then(res => res.json())
                 .then(json => {
-                    console.log(json);
                     let x = json.monitoriasOfrecidas;
                     for (let index = 0; index < x.length; index++) 
                     {
@@ -44,26 +36,35 @@ export default class principalPanel extends Component {
                             temp.push(elemento);
                         }
                     }
+                    this.setState({
+                        tutorias : temp
+                    })
                 })
             });
         }
      );
-     this.setState({
-         tutorias : temp
-     })
     }
 
-    refresh = (i, nombre) => {
+    refresh = (ev, i, nombre, id) => {
         this.setState({
-            nombre : nombre
-        })
+            nombre : nombre,
+            idCategoria : id
+        });
+        this.cargarTutorias();
         var actual = document.getElementsByClassName("nav-link-panel-actual");
         actual[0].classList.add("nav-link-panel");
         actual[0].classList.remove("nav-link-panel-actual");
         var element = document.getElementById(i);
         element.classList.add("nav-link-panel-actual");
         element.classList.remove("nav-link-panel");
+        this.actualizarTodos();
     }
+    actualizarTodos = () => {
+        this.setState({
+            mostrarTodos : !this.state.mostrarTodos
+        })
+    }
+
     render() {
         return (
             <div id="principalPanel">
@@ -72,20 +73,14 @@ export default class principalPanel extends Component {
                         <Col md={3} className="filters">
                             <h2>Categorias</h2>
                             <Nav className="flex-column">
-                                <Nav.Item>
-                                    <Nav.Link className=" nav-link nav-link-panel" eventKey="todos">Todos</Nav.Link>
-                                </Nav.Item> 
                                 {this.state.categories.map((e, i) => e.nombre !==this.state.nombre ? <Nav.Item key={i}>
-                                    <Link className="nav-link nav-link-panel" id={i} onClick={ev => this.refresh(i,e.nombre)} to={{ pathname: '/categories/'+e.nombre}}>{e.nombre}</Link>
+                                    <Link className="nav-link nav-link-panel" id={i} onClick={ev => this.refresh(ev,i,e.nombre,e._id )} to={{ pathname: '/categories/'+e.nombre}}>{e.nombre}</Link>
                                 </Nav.Item> : <Nav.Item key={i}>
                                     <Nav.Link  className="nav-link nav-link-panel-actual">{e.nombre}</Nav.Link>
                                 </Nav.Item>  )}
                             </Nav>
                         </Col>
                         <Col className="tutoriasCategoria" md={9}>
-                            <Tab.Pane eventKey="todos">
-                                {this.state.all.map((e,i)=> <Tutoria/>)}
-                            </Tab.Pane>
                             <Tab.Content>
                                 {this.state.tutorias.map((e, i) => <Tutoria key={i} value={e}/>)}
                             </Tab.Content>
