@@ -90,6 +90,7 @@ function postMonitoria(req, res) {
     let idCategory = req.params.idCategory
     let id = new ObjectId(idCategory);
     let monitorias = [];
+    let tutores = []
     monitoria.validate(err => {
         if (err != null) res.send(err.message);
         else {
@@ -109,7 +110,13 @@ function postMonitoria(req, res) {
                                     else {
                                         monitorias.push(dataMonitorias.ops[0]._id);
                                         client.db(databaseName).collection("tutors").updateOne({usuario: tutor}, {$set: {monitoriasOfrecidas: monitorias}}, (err, data) => {
-                                            res.send(dataMonitorias);
+                                            dataCategories[0].tutores.forEach(tutor => {
+                                                tutores.push(tutor);
+                                            });
+                                            tutores.push(tutor);
+                                            client.db(databaseName).collection("categories").updateOne({_id: id}, {$set: {"tutores": tutores}}, (err, data) => {
+                                                res.send(dataMonitorias);
+                                            });
                                         });
                                     }
                                 });
