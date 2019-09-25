@@ -36,7 +36,8 @@ export default class dashboardtutor extends Component {
         tituloModal: "Crear una nueva tutoria.",
         idTutoria: "",
         tutor: this.props.location.state.user,
-        categorias: []
+        categorias: [],
+        cambiosGuardados : false
     }
     underline = {
         '&:after': {
@@ -91,17 +92,17 @@ export default class dashboardtutor extends Component {
         })
     }
     setActualIdTutoria = (e, id) => {
-        console.log(id);
         e.preventDefault();
         this.setState({
             idTutoria: id,
             tituloModal: "Editar",
-            modalShow: !this.state.modalShow
-
+            modalShow: !this.state.modalShow,
+            cambiosGuardados : false
         });
 
     }
     modalTutoria = () => {
+
 
         let categoria = this.state.categorias.find(element => {
             return element.nombre === this.state.category;
@@ -136,12 +137,14 @@ export default class dashboardtutor extends Component {
             });
 
                  this.setState({
+                    cambiosGuardados : true,
                     modalShow: false,
                     monitoriasBrindadas: this.state.monitoriasBrindadas.filter(e => e._id !== this.state.idTutoria)
-                }, () => {console.log(this.state.monitoriasBrindadas)
+                }, () => {
             this.setState({
-                monitoriasBrindadas: this.state.monitoriasBrindadas.concat(JSON.parse(JSON.stringify(json)))
-            }, () => {console.error(this.state.monitoriasBrindadas)
+                monitoriasBrindadas: this.state.monitoriasBrindadas.concat(JSON.parse(JSON.stringify(json))),
+                cambiosGuardados : false
+            }, () => {
             this.forceUpdate(() => console.log("FORZADO"))}) })
         }
         cargarGraficos() {
@@ -250,6 +253,8 @@ export default class dashboardtutor extends Component {
                                     tempMonitorias.push(json[0]);
                                 }
                             })
+                            return e;
+
                     })
                     this.setState({
                         monitoriasBrindadas: tempMonitorias
@@ -273,6 +278,7 @@ export default class dashboardtutor extends Component {
                 );
         }
 
+        
 
         MyVerticallyCenteredModal = (props) => {
             const selectedDate = this.state.selectedDate;
@@ -450,7 +456,7 @@ export default class dashboardtutor extends Component {
                         <Col md={7} className="text-center justify-content-center">
                             <strong id="mistutorias">Mis tutorias</strong>
                             <div className="scrollbar scrollbar-primary">
-                                {this.state.monitoriasBrindadas.map((e, i) => <TutoriaBrindada onClick={ev => this.setActualIdTutoria(ev, e._id)} key={i} value={e} />)}
+                                {this.state.monitoriasBrindadas.map((e, i) => <TutoriaBrindada  pasarInfo={this.state} onClick={ev => this.setActualIdTutoria(ev, e._id)} key={i} value={e} />)}
                             </div>
                         </Col>
                     </Row>
