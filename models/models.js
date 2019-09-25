@@ -12,7 +12,8 @@ var monitoriaSchema = new mongoose.Schema({
     calificacionServicio: {type: Number, default: 0},
     tipo: {type: String, enum: ["Individual", "Grupal"], required: true},
     finalizada: {type: Boolean, default: false},
-    categoria: {type: ObjectId}
+    categoria: {type: ObjectId},
+    materia: {type: String}
 });
 
 var estudianteSchema = new mongoose.Schema({
