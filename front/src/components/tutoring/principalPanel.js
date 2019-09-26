@@ -35,7 +35,6 @@ export default class principalPanel extends Component {
                         fetch(`${url}/monitorias/${elemt}`)
                             .then(res => res.json())
                             .then(monitoria => {
-                                console.log(monitoria);
                                 if(monitoria[0].categoria == this.state.idCategoria){
                                     temp.push(monitoria);
                                 }
@@ -58,8 +57,10 @@ export default class principalPanel extends Component {
         this.setState({
             nombre : nombre,
             idCategoria : id
-        });
+        }, () => {
         this.cargarTutorias();
+    });
+       
         var actual = document.getElementsByClassName("nav-link-panel-actual");
         actual[0].classList.add("nav-link-panel");
         actual[0].classList.remove("nav-link-panel-actual");
