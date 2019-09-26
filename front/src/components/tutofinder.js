@@ -33,7 +33,6 @@ export default class tutofinder extends Component {
                             <Route exact path="/tutor/:username" component={DashBoardTutor} />
                             <Route exact path="/users/:user" component={UserInfo} />
                             <Route path="/categories/:idCategory" component={principalPanel} />
-                            <Route component={Fallo}/>
                             </div> : <Fallo value={this.state.logueado}/> }
                  
                         </div>

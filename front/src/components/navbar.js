@@ -62,11 +62,7 @@ export default class Navbar extends Component {
             if (path.length >= 4) {
                 return theURL.replace(path[3], this.state.busqueda);
             } else {
-<<<<<<< HEAD
                 //return location.replace("https://tutofinder.herokuapp.com/" + this.state.busqueda);
-=======
-                return this.location.replace("https://tutofinder.herokuapp.com/" + this.state.busqueda);
->>>>>>> a60c479709d409eda436610137386af05c3cac92
 
             }
         }
