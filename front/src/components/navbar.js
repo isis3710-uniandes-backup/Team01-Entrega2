@@ -20,7 +20,7 @@ export default class Navbar extends Component {
         }
         this.changeValue = this.changeValue.bind(this);
         this.loguear = this.loguear.bind(this);
-        this.buscar = this.buscar.bind(this);
+    //    this.changeURL = this.changeURL.bind(this);
         this.cerrarSesion = this.cerrarSesion.bind(this);
 
     }
@@ -31,23 +31,6 @@ export default class Navbar extends Component {
         });
         this.state.logFunc();
     }
-    buscar() {
-        let url = "";
-        if (this.state.busqueda !== "") {
-            fetch(url+'/categories')
-                .then(res => res.json())
-                .then(json => {
-                    url = json[0].rutaFront;
-                });
-            if (url === "") {
-                fetch(url+'/categories')
-                .then(res => res.json())
-                .then(json => {
-                    url = json[0].rutaFront;
-                });
-            }
-        }
-    }
     cerrarSesion() {
         this.setState({
             usuario: "",
@@ -56,7 +39,7 @@ export default class Navbar extends Component {
         this.state.logFunc();
     }
     componentDidMount() {
-        fetch(url+'/categories')
+        fetch(url + '/categories')
             .then(res => res.json())
             .then(json => {
                 this.setState({
@@ -71,6 +54,20 @@ export default class Navbar extends Component {
         });
 
     }
+/*     changeURL() {
+        if (this.state.categorias.includes(this.state.busqueda)) {
+            var theURL = window.location.pathname;
+            var path = theURL.split("/");
+            if (path.length >= 4) {
+                return theURL.replace(path[3], this.state.busqueda);
+            } else {
+                return this.location.replace("https://tutofinder.herokuapp.com/" + this.state.busqueda);
+
+            }
+        }
+        //Set URL
+
+    } */
     render() {
         return (
             <div>
@@ -94,7 +91,12 @@ export default class Navbar extends Component {
                         </ul>
                         <form className="form-inline my-2 my-lg-0 ">
                             <input id="search" className="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" value={this.state.busqueda} onChange={this.changeValue}></input>
-                            <button id="buscarButton" className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.buscar}>Buscar</button>
+                            <Link to={{
+                                pathname : '/categories/' + this.state.busqueda,
+                                state : {
+                                    category : this.state.busqueda,
+                                    categories : this.state.categorias
+                                }}} id="buscarButton" className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.changeURL}>Buscar</Link>
                         </form>
                         {this.state.logueado ? <ul className="nav navbar-nav ml-auto">
                             <li className="nav-item dropdown">
