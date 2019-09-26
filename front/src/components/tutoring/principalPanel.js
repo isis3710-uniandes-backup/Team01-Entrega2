@@ -24,25 +24,29 @@ export default class principalPanel extends Component {
         .then(json => {
             let tutores = json;
             tutores.forEach(element => {
+                console.log(element)
                 fetch(`${url}/users/${element}`)
                 .then(res => res.json())
                 .then(tutor => {
                     let x = tutor[0].monitoriasOfrecidas;
-                    for (let index = 0; index < x.length; index++) 
-                    {
-                        const elemento = x[index];
-                        fetch(`${url}/monitorias/${elemento}`)
+                    x.map(elemt => {
+                        fetch(`${url}/monitorias/${elemt}`)
                             .then(res => res.json())
                             .then(monitoria => {
-                                if(monitoria.categoria === this.state.nombre)
-                                {
-                                    temp.push(elemento);
+                                console.log(monitoria[0].categoria)
+                                console.log(this.state.idCategoria)
+                                if(monitoria[0].categoria == this.state.idCategoria){
+                                    temp.push(monitoria);
                                 }
+                            })
+                            .then(e => {
+                                this.setState({
+                                    tutorias: temp
+                                }, () => {
+                                    this.forceUpdate();
+                                });
                             });
-                    }
-                    this.setState({
-                        tutorias : temp
-                    })
+                    });
                 })
             });
         }
@@ -86,7 +90,7 @@ export default class principalPanel extends Component {
                         </Col>
                         <Col className="tutoriasCategoria" md={9}>
                             <Tab.Content>
-                                {this.state.tutorias.map((e, i) => <Tutoria key={i} value={e}/>)}
+                                {this.state.tutorias.map((e, i) => <Tutoria key={i} value={e[0]}/>)}
                             </Tab.Content>
                         </Col>
                     </Row>
