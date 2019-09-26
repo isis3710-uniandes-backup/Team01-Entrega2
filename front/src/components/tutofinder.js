@@ -11,14 +11,16 @@ export default class tutofinder extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            logueado: false
+            logueado: false,
+            usuario: ""
         }
         
         this.loguear = this.loguear.bind(this);
     }
-    loguear(){
+    loguear(usuario){
         this.setState({
-            logueado: !this.state.logueado
+            logueado: !this.state.logueado,
+            usuario: usuario
         });
     }
     render() {
