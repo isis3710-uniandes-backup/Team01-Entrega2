@@ -21,13 +21,12 @@ export default class principalPanel extends Component {
     }
     cargarTutorias()
     {
-        let temp = this.state.tutorias;
+        let temp = [];
         fetch( `${url}/categories/${this.state.idCategoria}/tutors`)
         .then(res => res.json())
         .then(json => {
             let tutores = json;
-            tutores.forEach(element => {
-                //console.log(element)
+            tutores.map(element => {
                 fetch(`${url}/users/${element}`)
                 .then(res => res.json())
                 .then(tutor => {
@@ -36,8 +35,7 @@ export default class principalPanel extends Component {
                         fetch(`${url}/monitorias/${elemt}`)
                             .then(res => res.json())
                             .then(monitoria => {
-                                console.log(monitoria[0].categoria)
-                                console.log(this.state.idCategoria)
+                                console.log(monitoria);
                                 if(monitoria[0].categoria == this.state.idCategoria){
                                     temp.push(monitoria);
                                 }
@@ -93,7 +91,9 @@ export default class principalPanel extends Component {
                         </Col>
                         <Col className="tutoriasCategoria" md={9}>
                             <Tab.Content>
-                                {this.state.tutorias.map((e, i) => <Tutoria key={i} value={e[0]} usuario={this.state.usuario}/>)}
+                                <Row>
+                                {this.state.tutorias.map((e, i) => <Col key={i} md={4}><Tutoria key={i} value={e[0]} usuario={this.state.usuario}/></Col>)}
+                                </Row>
                             </Tab.Content>
                         </Col>
                     </Row>
