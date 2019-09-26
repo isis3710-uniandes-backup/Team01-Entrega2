@@ -413,7 +413,6 @@ export default class dashboardtutor extends Component {
         }
 
         render() {
-            console.log("RENDERIZANDO");
             return (
                 <div id="dashboard">
                     <Row className="principal">

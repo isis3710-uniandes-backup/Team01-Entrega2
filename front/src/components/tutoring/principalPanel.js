@@ -24,17 +24,21 @@ export default class principalPanel extends Component {
         .then(json => {
             let tutores = json;
             tutores.forEach(element => {
-                fetch(`${url}/users/${element.usuario}`)
+                fetch(`${url}/users/${element}`)
                 .then(res => res.json())
-                .then(json => {
-                    let x = json.monitoriasOfrecidas;
+                .then(tutor => {
+                    let x = tutor[0].monitoriasOfrecidas;
                     for (let index = 0; index < x.length; index++) 
                     {
                         const elemento = x[index];
-                        if(elemento.categoria === this.state.nombre)
-                        {
-                            temp.push(elemento);
-                        }
+                        fetch(`${url}/monitorias/${elemento}`)
+                            .then(res => res.json())
+                            .then(monitoria => {
+                                if(monitoria.categoria === this.state.nombre)
+                                {
+                                    temp.push(elemento);
+                                }
+                            });
                     }
                     this.setState({
                         tutorias : temp

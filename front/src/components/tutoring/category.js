@@ -58,10 +58,6 @@ export default class Categoria extends Component {
     }
 
 
-
-
-
-
     componentDidMount() {
         fetch('https://radiant-hollows-88985.herokuapp.com/'+ this.state.nombre+ '/subjects/')
             .then(res => res.json())
@@ -96,9 +92,6 @@ export default class Categoria extends Component {
                 }
             );
     }
-
-
-
 
 
     render() {
