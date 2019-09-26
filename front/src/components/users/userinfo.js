@@ -3,6 +3,7 @@ import { Col, Row, Button, Nav, Image,Form} from 'react-bootstrap';
 import '../../styles/userinfo.css';
 import userimage from '../../assets/imgs/usr.png';
 import TutoriaRealizada from './tutoriarealizada';
+import { Link } from "react-router-dom"
 
 var isDefined =true;
 export default class userinfo extends Component {
@@ -152,9 +153,6 @@ export default class userinfo extends Component {
                                         <li>
                                             <a onClick={this.mostrarForm}>Ajustes de cuenta</a>
                                         </li>
-                                        <li>
-                                            <a >Cerrar sesión</a>
-                                        </li>
                                     </ul> 
                                 </Nav>
                             </Col>
@@ -294,9 +292,6 @@ export default class userinfo extends Component {
                                         </li>
                                         <li>
                                             <a onClick={this.mostrarTutorias} >Mis tutorías</a>
-                                        </li>
-                                        <li>
-                                            <a >Cerrar sesión</a>
                                         </li>
                                     </ul> 
                                 </Nav>
