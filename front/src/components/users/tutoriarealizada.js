@@ -7,7 +7,7 @@ export default class tutoriarealizada extends Component {
         super(props);
 
         this.state={
-            materia: this.props.value.materias,
+            materia: this.props.value.materia,
             direccion: this.props.value.direccion,
             fecha: this.props.value.fecha,
             duracion: this.props.value.duracion,
