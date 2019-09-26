@@ -21,6 +21,8 @@
 * React
 * Cuenta en Heroku
 * Cuenta Mongo Atlas
+* Instalar material-ui
+* Instalar chart.js
 ```
 
 ### Instalación 🔧

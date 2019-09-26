@@ -17,7 +17,6 @@ class LogIn extends Component {
             fetch(url+'/users/' + this.state.usuario)
                 .then(res => res.json())
                 .then(json => {
-                    console.log(json);
                     if (json[0].contrasenna === this.state.password) {
                         this.props.changeLogInStatus(json[0].usuario);
                     } else {

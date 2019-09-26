@@ -29,14 +29,14 @@ export default class Navbar extends Component {
             usuario: usr,
             logueado: true
         });
-        this.state.logFunc();
+        this.state.logFunc(usr);
     }
     cerrarSesion() {
         this.setState({
             usuario: "",
             logueado: false
         });
-        this.state.logFunc();
+        this.state.logFunc("");
     }
     componentDidMount() {
         fetch(url + '/categories')
@@ -76,7 +76,7 @@ export default class Navbar extends Component {
         return (
             <div>
 
-                <nav className="navbar navbar-expand-lg navbar-light">
+                <nav className="navbar navbar-expand-lg navbar-light" value={this.state.usuario}>
                     <Link className="navbar-brand" to="/"><img className="img-circle" src={logo} alt="Logo de la compania" width="40" height="40"></img><strong id="tutofinder">TutoFinder</strong></Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

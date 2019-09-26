@@ -9,7 +9,8 @@ export default class categoryblock extends Component {
         nombre :this.props.value.nombre,
         imagen : this.props.value.rutaFront,
         brothers : this.props.brothers,
-        id : this.props.value._id
+        id : this.props.value._id,
+        usuario: this.props.value.user
     }
     render() {
         return (

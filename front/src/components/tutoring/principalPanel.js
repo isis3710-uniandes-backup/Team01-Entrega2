@@ -12,9 +12,12 @@ export default class principalPanel extends Component {
         categories: this.props.location.state.categories,
         idCategoria : this.props.location.state.idCategory,
         tutorias : [],
+        usuario: ""
     }
     componentDidMount(){
         this.cargarTutorias();
+        let x = document.getElementsByClassName("navbar")
+        this.setState({usuario: x[0].getAttribute("value")})
     }
     cargarTutorias()
     {
@@ -24,7 +27,7 @@ export default class principalPanel extends Component {
         .then(json => {
             let tutores = json;
             tutores.forEach(element => {
-                console.log(element)
+                //console.log(element)
                 fetch(`${url}/users/${element}`)
                 .then(res => res.json())
                 .then(tutor => {
@@ -90,7 +93,7 @@ export default class principalPanel extends Component {
                         </Col>
                         <Col className="tutoriasCategoria" md={9}>
                             <Tab.Content>
-                                {this.state.tutorias.map((e, i) => <Tutoria key={i} value={e[0]}/>)}
+                                {this.state.tutorias.map((e, i) => <Tutoria key={i} value={e[0]} usuario={this.state.usuario}/>)}
                             </Tab.Content>
                         </Col>
                     </Row>
